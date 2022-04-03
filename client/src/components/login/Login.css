@@ -1,0 +1,106 @@
+.login-page {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10vh 0;
+}
+
+.login-form {
+    width: 25%;
+}
+
+.login-heading {
+    font-size: 3.2vh;
+    font-weight: bold;
+}
+
+.form-element {
+    margin: 1.5vh 0;
+}
+
+.form-element-title {
+
+}
+
+.form-element-input {
+    width: 91%;
+    padding: 1.5vh 1vw;
+    font-family: Poppins;
+}
+.form-element-input:focus {
+    outline: none;
+}
+
+.form-login-button {
+    width: 100%;
+    padding: 1vh 1vw;
+    margin-top: 1.5vh;
+    cursor: pointer;
+    font-family: Poppins;
+    border: none;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+.form-login-button:hover {
+    background-color: blue;
+}
+
+
+
+.register-as {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 2vh 0;
+}
+
+.active-register {
+    border: 1.5px solid blue;
+    border-radius: 5px;
+    padding: 0.5vh 0.5vw;
+    box-shadow: 5px 5px 10px lightgrey;
+    cursor: pointer;
+}
+
+.register-option {
+    padding: 0.5vh 0.5vw;
+    cursor: pointer;
+}
+
+.not-registered {
+    text-align: center;
+    font-size: 2.2vh;
+}
+
+.register-link {
+    text-decoration: none;
+    color: blue;
+}
+.register-link:hover {
+    text-decoration: underline black;
+}
+
+.login-as-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5vh 0;
+}
+
+.login-as-icons-active {
+    text-align: center;
+    margin: 0 0.5vw;
+    font-size: 2.2vh;
+    color: blue;
+    cursor: pointer;
+}
+.login-as-icons-unactive {
+    text-align: center;
+    margin: 0 0.5vw;
+    font-size: 2.2vh;
+    cursor: pointer;
+}
+
+.login-as-icon {
+    font-size: 20px;
+}

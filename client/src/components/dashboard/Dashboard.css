@@ -1,0 +1,61 @@
+.dashboard {
+    display: flex;
+}
+
+.dashboard-side {
+    width: 20vw;
+    height: 100vh;
+    padding: 2vh 0;
+    background-color: rgb(245, 251, 255);
+    position: fixed;
+}
+
+.dashboard-side-message {
+    margin-left: 1vw;
+}
+
+.dashboard-main {
+    width: 80vw;
+    padding: 2vh 5vw 2vh 25vw;
+}
+
+.profile-info {
+    text-align: center;
+    font-size: 1.8vh;
+    margin: 8vh 0;
+}
+
+.profile-info-name {
+    font-size: 2.2vh;
+}
+
+.profile-info-email {
+    color: grey;
+}
+
+.dashboard-options {
+    
+}
+
+.dashboard-option-active {
+    display: flex;
+    align-items: center;
+    margin: 2vh 0;
+    padding: 1vh 0.5vw;
+    cursor: pointer;
+    border-left: 5px solid blue;
+}
+
+.dashboard-option-unactive {
+    display: flex;
+    align-items: center;
+    margin: 2vh 0;
+    padding: 1vh 0.5vw;
+    cursor: pointer;
+    border-left: 5px solid rgb(245, 251, 255);
+}
+
+.dashboard-profile-icon {
+    font-size: 20px;
+    margin: 0 0.5vw;
+}
