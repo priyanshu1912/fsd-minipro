@@ -1,9 +1,22 @@
 .profile-settings-form {
     margin-top: 5vh;
-    width: 50%;
+    width: 40%;
+    font-size: 2.2vh;
 }
 
 .update-profile-button {
     font-family: Poppins;
-    margin-top: 4vh;
+    margin-top: 2vh;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5vh 0.5vw;
+    border: 1.5px solid blue;
+    font-size: 2.2vh;
+}
+.update-profile-button:hover {
+    background-color: white;
+    color: blue;
 }
