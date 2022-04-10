@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 function Nav() {
   return (
     <div className='nav'>
-        <div className='nav-logo'>FSD-project</div>
+        <div className='nav-logo'>BLUELEARN 2.0</div>
         <div className='nav-options'>
             <div className='nav-option'>Pricing</div>
             <div className='nav-option'>Solutions</div>
@@ -13,8 +13,12 @@ function Nav() {
         </div>
 
         <div className='nav-buttons'>
-          <Link className='nav-register' to='/register'>Register</Link>
-          <Link className='nav-login' to='/login'>Log In</Link>
+          <Link to='/register'>
+            <button className='nav-register'>Register</button>
+          </Link>
+          <Link to='/login'>
+            <button className='nav-login'>Log In</button>
+          </Link>
         </div>
     </div>
   )

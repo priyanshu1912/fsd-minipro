@@ -10,16 +10,22 @@
 .nav-logo {
     margin-left: 5vw;
     font-size: 5vh;
+    font-weight: bold;
+    color: blue;
 }
 
 .nav-options {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 30vw;
+    width: 25vw;
 }
 
+.nav-option {
+    border-bottom: 1px solid white;
+}
 .nav-option:hover {
+    color: blue;
     border-bottom: 1px solid black;
     cursor: pointer;
 }
@@ -30,12 +36,14 @@
 }
 
 .nav-login {
+    border: none;
     cursor: pointer;
     color: white;
     text-decoration: none;
     background-color: black;
     padding: 1vh 1vw;
     border-radius: 5px;
+    font-family: Poppins;
 }
 .nav-login:hover {
     background-color: blue;
@@ -46,12 +54,12 @@
     text-decoration: none;
     padding: 1vh 1vw;
     border-radius: 5px;
-    border: 1px solid black;
+    border: none;
     margin-right: 1vw;
     text-decoration: none;
     color: black;
+    font-family: Poppins;
 }
 .nav-register:hover {
     color: blue;
-    border: 1px solid blue;
 }

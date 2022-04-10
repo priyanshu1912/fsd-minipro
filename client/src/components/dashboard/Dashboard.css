@@ -6,7 +6,8 @@
     width: 20vw;
     height: 100vh;
     padding: 2vh 0;
-    background-color: rgb(245, 251, 255);
+    background-color: black;
+    color: white;
     position: fixed;
 }
 
@@ -43,7 +44,7 @@
     margin: 2vh 0;
     padding: 1vh 0.5vw;
     cursor: pointer;
-    border-left: 5px solid blue;
+    color: blue;
 }
 
 .dashboard-option-unactive {
@@ -52,7 +53,6 @@
     margin: 2vh 0;
     padding: 1vh 0.5vw;
     cursor: pointer;
-    border-left: 5px solid rgb(245, 251, 255);
 }
 
 .dashboard-profile-icon {
