@@ -24,7 +24,7 @@ function Login() {
         })
     }
 
-    const [loginAs,setLoginAs] = useState('student')
+    const [loginAs,setLoginAs] = useState('mentor')
 
 
   return (
@@ -32,13 +32,13 @@ function Login() {
         <form className='login-form' onSubmit={loginUser}>
             <div className='login-heading'>Login as</div>
             <div className='login-as-container'>
-                <div className={loginAs==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginAs('student')}>
+                <div className={loginAs==='mentor'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginAs('mentor')}>
                     <VscPerson className='login-as-icon'/>
-                    <div>Student</div>
+                    <div>mentor</div>
                 </div>
-                <div className={loginAs==='college'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginAs('college')}>
+                <div className={loginAs==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginAs('student')}>
                     <VscOrganization className='login-as-icon'/>
-                    <div>College</div>
+                    <div>student</div>
                 </div>
             </div>
             <div className='form-element'>
