@@ -1,7 +1,5 @@
 .dashboard {
     display: flex;
-    /* background-color: rgb(246, 251, 255); */
-    height: 100vh;
 }
 
 .dashboard-side {
