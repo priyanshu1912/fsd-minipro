@@ -1,57 +1,24 @@
-.clubs-container {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 2vw;
-    margin-top: 3vh;
+.clubs {
+    margin-top: 5vh;
 }
 
-.club {
-    background-color: white;
-    border-radius: 5px;
-    padding: 2vh;
-    text-align: center;
-    font-size: 2.2vh;
-    box-shadow: 0 5px 20px rgb(235, 235, 235);
-}
-
-.club-name {
-    font-size: 3vh;
-}
-
-.club-desc {
-    color: grey;
-}
-
-.club-details {
-    margin-top: 1vh;
-    text-align: left;
-}
-
-.club-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1vh;
-}
-
-.club-members {
-    display: flex;
-    align-items: center;
-}
-
-.club-join-button {
-    border: 1.5px solid blue;
-    border-radius: 5px;
-    font-family: Poppins;
-    cursor: pointer;
-    padding: 0.5vh 0.5vw;
-    font-size: 2.2vh;
-    background-color: blue;
+.active-tab {
+    border: 1px solid #2196f3;
     color: white;
-}
-.club-join-button:hover {
-    background-color: white;
-    color: blue;
-    border: 1.5px solid blue;
+    padding: 0.1vh 0.5vw;
+    border-radius: 15px;
+    font-size: 2vh;
+    cursor: pointer;
+    margin-right: 1vw;
+    background-color: #2196f3;
 }
 
+.unactive-tab {
+    border: 1px solid #2196f3;
+    color: #2196f3;
+    padding: 0.1vh 0.5vw;
+    border-radius: 15px;
+    font-size: 2vh;
+    cursor: pointer;
+    margin-right: 1vw;
+}

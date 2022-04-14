@@ -1,0 +1,44 @@
+.dashboard-main-nav {
+    display: inline-block;
+    align-items: center;
+    margin: 3vh 0 5vh 0;
+    font-size: 2.2vh;
+    position: fixed;
+    right: 5vw;
+    z-index: 1000;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-profile-icon {
+    margin-right: 0.5vw;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.user-profile-arrow {
+    margin-left: 0.2vw;
+    color: #2196f3;
+    font-size: 20px;
+}
+
+.user-profile-name {
+    color: grey;
+}
+
+
+.notification {
+    font-size: 25px;
+    margin-right: 1.5vw;
+}
+
+.message {
+    font-size: 20px;
+    margin-right: 3vw;
+}
