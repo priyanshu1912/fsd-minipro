@@ -1,0 +1,74 @@
+.project-heading {
+    font-size: 3.5vh;
+    margin: 5vh 0 4vh 0;
+    color: grey;
+}
+
+.projects-container {
+    margin: 5vh 0;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2vw;
+}
+
+.project {
+    box-shadow: 2px 0 10px rgb(230, 230, 230);
+    border-radius: 15px;
+    padding: 2vh 1.5vw;
+    background-color: white;
+}
+
+.project-image-container {
+    margin: 5vh 0 8vh 0;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid lightgrey;
+    position: relative;
+    padding-bottom: 2vh;
+}
+
+.project-name {
+    font-size: 3vh;
+}
+
+.project-info {
+    font-size: 2.2vh;
+    color: grey;
+}
+
+.project-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    bottom: -100%;
+}
+
+.project-time {
+    color: grey;
+    font-size: 2.2vh;
+}
+
+.professor-name {
+    font-size: 2.5vh;
+    color: grey;
+}
+
+.explore-project {
+    margin: 2vh 0;
+    font-size: 2.2vh;
+    color: #2196f3;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5vh 0.5vw;
+}
+.explore-project:hover {
+    background-color: #2196f3;
+    color: white;
+    padding: 0.5vh 0.5vw;
+    border-radius: 15px;
+}

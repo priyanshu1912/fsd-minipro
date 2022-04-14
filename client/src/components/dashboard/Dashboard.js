@@ -9,6 +9,7 @@ import Overview from './dashboard-routes/overview/Overview'
 import Profile from './dashboard-routes/profile/Profile'
 import Clubs from './dashboard-routes/clubs/Clubs'
 import DashboardNav from '../dashboard-nav/DashboardNav'
+import Projects from './dashboard-routes/projects/Projects'
 
 function Dashboard() {
     const [activeTab,setActiveTab] = useState('dashboard')
@@ -69,6 +70,10 @@ function Dashboard() {
             {
                 activeTab==='clubs' &&
                 <Clubs/>
+            }
+            {
+                activeTab==='projects' &&
+                <Projects/>
             }
         </div>
     </div>
