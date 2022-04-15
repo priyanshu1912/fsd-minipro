@@ -1,0 +1,54 @@
+.feed-container {
+    background-color: white;
+    width: 100%;
+    padding: 2vh 1.5vw;
+    border-radius: 15px;
+    margin: 3vh 0;
+}
+
+.feed-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-right: 0.5vw;
+}
+
+.feed-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5vh;
+    cursor: pointer;
+}
+
+.feed-time {
+    font-size: 2vh;
+}
+
+.feed-content {
+    font-size: 2.2vh;
+    color: black;
+}
+
+.feed-options {
+    font-size: 2vh;
+    margin-top: 2vh;
+    text-align: right;
+}
+
+.feed-buttons {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgb(243, 243, 243);
+    padding: 0.5vh 0.5vw;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 0 0.2vw;
+}
+
+.feed-like {
+    color: red;
+    font-size: 20px;
+    margin-right: 0.3vw;
+}

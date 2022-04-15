@@ -1,4 +1,4 @@
-.profile-settings-form {
+/* .profile-settings-form {
     margin-top: 5vh;
     width: 40%;
     font-size: 2.2vh;
@@ -19,4 +19,104 @@
 .update-profile-button:hover {
     background-color: white;
     color: blue;
+} */
+
+.profile-container {
+    /* margin-top: 10vh; */
+    padding-top: 35vh;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    background-image: url('https://png.pngtree.com/thumb_back/fw800/back_our/20190628/ourmid/pngtree-gray-geometric-background-material-image_274669.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 20vw;
+    width: 80vw;
+    height: 35vh;
+}
+
+.profile-inner {
+    position: absolute;
+    left: 5vw;
+    bottom: 3vh;
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-right: 2vw;
+}
+
+.profile-info-name {
+    font-size: 3.5vh;
+}
+
+.about-container {
+    margin: 5vh 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about {
+    width: 60%;
+}
+
+.contact {
+    width: 30%;
+}
+
+.about-heading {
+    display: flex;
+    align-items: center;
+}
+
+.about-content {
+    color: grey;
+    font-size: 2.3vh;
+}
+
+.contact-element {
+    margin: 1vh 0;
+    color: grey;
+    font-size: 2.3vh;
+    display: flex;
+    align-items: center;
+}
+
+.contact-icon {
+    font-size: 20px;
+    margin-right: 0.5vw;
+}
+
+.project-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.projects {
+    width: 45%;
+}
+
+.skills {
+    width: 45%;
+}
+
+
+.edit-button {
+    margin-left: 0.5vw;
+    cursor: pointer;
+    color: grey;
+    font-size: 20px;
+}
+.edit-button:hover {
+    color: #2196f3;
 }

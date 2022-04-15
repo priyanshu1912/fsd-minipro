@@ -1,61 +1,66 @@
 import React,{useState} from 'react'
 import './Dashboard.css'
 import {IoSettingsOutline} from 'react-icons/io5'
-import {IoIosArrowDown} from 'react-icons/io'
-import {AiOutlineDashboard} from 'react-icons/ai'
-import {RiUser3Fill} from 'react-icons/ri'
+import {IoMdArrowDropdown} from 'react-icons/io'
+import {AiOutlineDashboard,AiOutlineFundProjectionScreen} from 'react-icons/ai'
 import {CgFeed,CgCardClubs} from 'react-icons/cg'
+import {MdKeyboardArrowRight} from 'react-icons/md'
 import Overview from './dashboard-routes/overview/Overview'
 import Profile from './dashboard-routes/profile/Profile'
 import Clubs from './dashboard-routes/clubs/Clubs'
+import DashboardNav from '../dashboard-nav/DashboardNav'
+import Projects from './dashboard-routes/projects/Projects'
 
 function Dashboard() {
-    const [activeTab,setActiveTab] = useState('clubs')
+    const [activeTab,setActiveTab] = useState('dashboard')
 
   return (
     <div className='dashboard'>
         <div className='dashboard-side'>
-            {/* <div className='dashboard-side-message'>
-                <div>Hello Priyanshu!</div>
-                <div className='side-message-greet'>Good to see you again</div>
-            </div> */}
-
-            {/* <div className='profile-info'>
-                <div className='profile-info-name'>Priyanshu Bhardwaj</div>
-                <div className='profile-info-email'>priyanshubhradwaj19dec@gmail.com</div>
-            </div> */}
+            <div className='profile-info'>
+                <div className='profile-info-name'>AMISOCIAL</div>
+            </div>
 
             <div className='dashboard-options'>
-                <div className={activeTab==='overview'?'dashboard-option-active':'dashboard-option-unactive'} onClick={()=>setActiveTab('overview')}>
-                    <AiOutlineDashboard className='dashboard-profile-icon'/>
-                    Overview
+                <div className={activeTab==='dashboard'?'dashboard-option-active':'dashboard-option-unactive'} onClick={()=>setActiveTab('dashboard')}>
+                    <div style={{display:'flex',alignItems:'center'}}>
+                        <CgFeed className='dashboard-profile-icon'/>
+                        Dashboard
+                    </div>
+                    <MdKeyboardArrowRight className='profile-option-arrow'/>
                 </div>
-                <div className={activeTab==='feeds'?'dashboard-option-active':'dashboard-option-unactive'} onClick={()=>setActiveTab('feeds')}>
-                    <CgFeed className='dashboard-profile-icon'/>
-                    Feeds
-                </div>
+
                 <div className={activeTab==='clubs'?'dashboard-option-active':'dashboard-option-unactive'} onClick={()=>setActiveTab('clubs')}>
-                    <CgCardClubs className='dashboard-profile-icon'/>
-                    Clubs
+                    <div style={{display:'flex',alignItems:'center'}}>
+                        <CgCardClubs className='dashboard-profile-icon'/>
+                        Clubs
+                    </div>
+                    <MdKeyboardArrowRight className='profile-option-arrow'/>
                 </div>
+
+                <div className={activeTab==='projects'?'dashboard-option-active':'dashboard-option-unactive'} onClick={()=>setActiveTab('projects')}>
+                    <div style={{display:'flex',alignItems:'center'}}>
+                        <AiOutlineFundProjectionScreen className='dashboard-profile-icon'/>
+                        Projects
+                    </div>
+                    <MdKeyboardArrowRight className='profile-option-arrow'/>
+                </div>
+
                 <div className={activeTab==='profile'?'dashboard-option-active':'dashboard-option-unactive'} onClick={()=>setActiveTab('profile')}>
-                    <IoSettingsOutline className='dashboard-profile-icon'/>
-                    Settings
-                </div>
+                    <div style={{display:'flex',alignItems:'center'}}>
+                        <IoSettingsOutline className='dashboard-profile-icon'/>
+                        Profile
+                    </div>
+                    <MdKeyboardArrowRight className='profile-option-arrow'/>
+                </div> 
             </div>
         </div>
 
         <div className='dashboard-main'>
-            <div className='dashboard-main-nav'>
-                <h3>Dashboard</h3>
-                <div className='user-profile'>
-                    <RiUser3Fill className='user-profile-icon'/>
-                    <div>Priyanshu Bhardwaj</div>
-                    <IoIosArrowDown className='user-profile-arrow'/>
-                </div>
-            </div>
+            <DashboardNav/>
+            
             {
-                activeTab==='overview' &&
+                activeTab==='dashboard' &&
                 <Overview/>
             }
             {
@@ -65,6 +70,10 @@ function Dashboard() {
             {
                 activeTab==='clubs' &&
                 <Clubs/>
+            }
+            {
+                activeTab==='projects' &&
+                <Projects/>
             }
         </div>
     </div>
