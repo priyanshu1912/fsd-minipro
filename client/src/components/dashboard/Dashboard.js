@@ -11,7 +11,8 @@ import Clubs from './dashboard-routes/clubs/Clubs'
 import DashboardNav from '../dashboard-nav/DashboardNav'
 import Projects from './dashboard-routes/projects/Projects'
 
-function Dashboard() {
+function Dashboard(props) {
+    console.log(props)
     const [activeTab,setActiveTab] = useState('dashboard')
 
   return (

@@ -3,24 +3,36 @@ import './Register.css'
 import {VscPerson,VscOrganization} from 'react-icons/vsc'
 import {AiOutlineUser,AiOutlineLock} from 'react-icons/ai'
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 function Register() {
     const navigate = useNavigate()
 
-    const [registerAs,setRegisterAs] = useState('mentor')
+    // const [registerAs,setRegisterAs] = useState('mentor')
 
     const [registerData,setRegisterData] = useState({
-        type:registerAs,
+        userType: 'Faculty',
+        username:'',
         name:'',
         email:'',
         password:'',
-        image:''
+        profilePhoto:'',
+        program:''
     })
 
     const registerUser = (e) => {
         e.preventDefault()
         console.log({registerData})
-        navigate('/dashboard')
+
+        axios.post('http://localhost:5000/register',registerData)
+        .then(res => {
+            if(res.data.status===200){
+                navigate('/dashboard',{state:res.data.data})
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     const handleRegisterChange = (e) => {
@@ -30,13 +42,13 @@ function Register() {
         })
     }
 
-    const registerAsChange = (value) => {
-        setRegisterAs(value)
-        setRegisterData({
-            ...registerData,
-            type: value
-        })
-    }
+    // const registerAsChange = (value) => {
+    //     setRegisterAs(value)
+    //     setRegisterData({
+    //         ...registerData,
+    //         type: value
+    //     })
+    // }
 
 
     const [next,setNext] = useState(false)
@@ -46,7 +58,7 @@ function Register() {
         setAvatar(value)
         setRegisterData({
             ...registerData,
-            image: value
+            profilePhoto: value
         })
     }
 
@@ -59,11 +71,11 @@ function Register() {
                 <>
                 <div className='login-heading'>AMISOCIAL register</div>
                 <div className='login-as-container'>
-                    <div className={registerAs==='mentor'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => registerAsChange('mentor')}>
+                    <div className={registerData.userType==='Faculty'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,userType:'Faculty'})}>
                         <VscPerson className='login-as-icon'/>
-                        <div>mentor</div>
+                        <div>faculty</div>
                     </div>
-                    <div className={registerAs==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => registerAsChange('student')}>
+                    <div className={registerData.userType==='Student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,userType:'Student'})}>
                         <VscOrganization className='login-as-icon'/>
                         <div>student</div>
                     </div>
@@ -79,10 +91,26 @@ function Register() {
                     </div>
 
                     <div className='form-element'>
+                        <div className='form-input-title'>Username</div>
+                        <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
+                            <AiOutlineUser/>
+                            <input className='form-element-input' type="text" placeholder='Enter username' name='username' value={registerData.username} onChange={handleRegisterChange}/>
+                        </div>
+                    </div>
+
+                    <div className='form-element'>
                         <div className='form-input-title'>Email-id</div>
                         <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
                             <AiOutlineLock/>
                             <input className='form-element-input' type="text" placeholder='Enter email' name='email' value={registerData.email} onChange={handleRegisterChange}/>
+                        </div>
+                    </div>
+
+                    <div className='form-element'>
+                        <div className='form-input-title'>Program</div>
+                        <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
+                            <AiOutlineUser/>
+                            <input className='form-element-input' type="text" placeholder='Enter program' name='program' value={registerData.program} onChange={handleRegisterChange}/>
                         </div>
                     </div>
 

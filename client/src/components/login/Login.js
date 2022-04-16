@@ -6,8 +6,10 @@ import {AiOutlineUser,AiOutlineLock} from 'react-icons/ai'
 
 function Login() {
     const navigate = useNavigate()
+    // const [loginAs,setLoginAs] = useState('mentor')
 
     const [loginData,setLoginData] = useState({
+        type: 'mentor',
         email:'',
         password:''
     })
@@ -25,19 +27,16 @@ function Login() {
         })
     }
 
-    const [loginAs,setLoginAs] = useState('mentor')
-
-
   return (
     <div className='login-page'>
         <form className='login-form' onSubmit={loginUser}>
             <div className='login-heading'>AMISOCIAL login</div>
             <div className='login-as-container'>
-                <div className={loginAs==='mentor'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginAs('mentor')}>
+                <div className={loginData.type==='mentor'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginData({...loginData,type:'mentor'})}>
                     <VscPerson className='login-as-icon'/>
                     <div>mentor</div>
                 </div>
-                <div className={loginAs==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginAs('student')}>
+                <div className={loginData.type==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={()=>setLoginData({...loginData,type:'student'})}>
                     <VscOrganization className='login-as-icon'/>
                     <div>student</div>
                 </div>

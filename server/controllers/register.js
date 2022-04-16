@@ -37,7 +37,8 @@ export const registerUser = (req, res) => {
                 username: req.body.username,
                 email: req.body.email,
                 program: req.body.program,
-                password: req.body.password
+                password: req.body.password,
+                profilePhoto: req.body.profilePhoto
             })
 
             newStudent.save(function (err, newStudent) {
@@ -49,6 +50,7 @@ export const registerUser = (req, res) => {
                     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
                     res.send({ status: 200, message: "Student record inserted!", studentObj: newStudent });
                 }
+                //res.send({ status: 200, message: "Student record inserted!", studentObj: newStudent });
             });
         }
         else if (userType === "Faculty") {
@@ -57,16 +59,18 @@ export const registerUser = (req, res) => {
                 username: req.body.username,
                 email: req.body.email,
                 program: req.body.program,
-                password: req.body.password
+                password: req.body.password,
+                profilePhoto: req.body.profilePhoto
             })
 
             newFaculty.save(function (err, newFaculty) {
                 if (err) {
                     const errors = handleErrors(err);
-                    res.status(400).json(errors);
+                    res.send({ status: 400, errors });
                 } else {
-                    res.send({ status: 200, message: "Faculty record inserted!", facultyObj: newFaculty });
+                    res.send({ status: 200, message: "Faculty record inserted!", data: newFaculty });
                 }
+                //res.send({ status: 200, message: "Faculty record inserted!", facultyObj: newFaculty });
             });
         }
     }
