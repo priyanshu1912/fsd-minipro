@@ -34,6 +34,24 @@ const studentSchema = new mongoose.Schema({
     },
     profilePhoto: {
         type: String
+    },
+    bio: {
+        type: String
+    },
+    currentProjects: [{
+        title: { type: String },
+        body: { type: String },
+        url: { type: String }
+    }],
+    publications: {
+        title: { type: String },
+        body: { type: String },
+        url: { type: String }
+    },
+    urls: {
+        mail: { type: String },
+        li: { type: String },
+        gh: { type: String },
     }
 }, { collection: "students" });
 
