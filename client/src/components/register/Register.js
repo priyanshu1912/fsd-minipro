@@ -7,10 +7,10 @@ import {useNavigate} from 'react-router-dom'
 function Register() {
     const navigate = useNavigate()
 
-    const [registerAs,setRegisterAs] = useState('mentor')
+    // const [registerAs,setRegisterAs] = useState('mentor')
 
     const [registerData,setRegisterData] = useState({
-        type:registerAs,
+        type: 'mentor',
         name:'',
         email:'',
         password:'',
@@ -30,13 +30,13 @@ function Register() {
         })
     }
 
-    const registerAsChange = (value) => {
-        setRegisterAs(value)
-        setRegisterData({
-            ...registerData,
-            type: value
-        })
-    }
+    // const registerAsChange = (value) => {
+    //     setRegisterAs(value)
+    //     setRegisterData({
+    //         ...registerData,
+    //         type: value
+    //     })
+    // }
 
 
     const [next,setNext] = useState(false)
@@ -59,11 +59,11 @@ function Register() {
                 <>
                 <div className='login-heading'>AMISOCIAL register</div>
                 <div className='login-as-container'>
-                    <div className={registerAs==='mentor'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => registerAsChange('mentor')}>
+                    <div className={registerData.type==='mentor'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,type:'mentor'})}>
                         <VscPerson className='login-as-icon'/>
                         <div>mentor</div>
                     </div>
-                    <div className={registerAs==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => registerAsChange('student')}>
+                    <div className={registerData.type==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,type:'student'})}>
                         <VscOrganization className='login-as-icon'/>
                         <div>student</div>
                     </div>
