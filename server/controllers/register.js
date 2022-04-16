@@ -3,7 +3,7 @@ import FacultyModel from "../models/facultyModel.js";
 import jsonwebtoken from "jsonwebtoken";
 
 const handleErrors = (err) => {
-    let errors = { username: '', name: '', email: '', password: '' };
+    let errors = { username: '', name: '', email: '', password: '', minlen: '' };
 
     //duplicate error code
     if (err.code === 11000) {

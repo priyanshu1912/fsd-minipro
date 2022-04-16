@@ -35,10 +35,31 @@ const facultySchema = new mongoose.Schema({
     profilePhoto: {
         type: String
     },
+    bio: {
+        type: String
+    },
+    currentProjects: [{
+        title: { type: String },
+        body: { type: String },
+        url: { type: String }
+    }],
+    publications: {
+        title: { type: String },
+        body: { type: String },
+        url: { type: String }
+    },
+    achievements: {
+        title: { type: String },
+        body: { type: String },
+        url: { type: String }
+    },
+    mail: { type: String },
+    linkedin: { type: String },
+    github: { type: String },
     projects: {
         type: [String],
         default: []
-    }
+    },
 }, { collection: "faculty" });
 
 //Hashing the password using Mongoose Hooks - firing this function before document is saved in the DB

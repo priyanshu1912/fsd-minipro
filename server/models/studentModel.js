@@ -48,11 +48,14 @@ const studentSchema = new mongoose.Schema({
         body: { type: String },
         url: { type: String }
     },
-    urls: {
-        mail: { type: String },
-        li: { type: String },
-        gh: { type: String },
-    }
+    achievements: {
+        title: { type: String },
+        body: { type: String },
+        url: { type: String }
+    },
+    mail: { type: String },
+    linkedin: { type: String },
+    github: { type: String },
 }, { collection: "students" });
 
 //Hashing the password
