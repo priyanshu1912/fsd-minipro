@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import ProjectModel from "../models/projectModel.js";
 
 const facultySchema = new mongoose.Schema({
     name: {
@@ -25,13 +24,13 @@ const facultySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // projects: {
-    //     type: [ProjectModel],
-    //     default: []
-    // }
+    projects: {
+        type: [String],
+        default: []
+    }
 }, { collection: "faculty" });
 
-//Hashing the password
+//Hashing the password using Mongoose Hooks - firing this function before document is saved in the DB
 facultySchema.pre('save', async function (next) {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 12);
