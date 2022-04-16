@@ -16,7 +16,7 @@ function Register() {
         name:'',
         email:'',
         password:'',
-        image:'',
+        profilePhoto:'',
         program:''
     })
 
@@ -26,7 +26,9 @@ function Register() {
 
         axios.post('http://localhost:5000/register',registerData)
         .then(res => {
-            console.log(res)
+            if(res.data.status===200){
+                navigate('/dashboard',{state:res.data.data})
+            }
         })
         .catch(err => {
             console.log(err)
@@ -56,7 +58,7 @@ function Register() {
         setAvatar(value)
         setRegisterData({
             ...registerData,
-            image: value
+            profilePhoto: value
         })
     }
 
