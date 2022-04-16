@@ -17,20 +17,6 @@ app.use(cors());
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 app.use('/projects', projectRoutes);
-// app.use('/students', studentRoutes);
-
-app.get('set-cookies', (req, res) => {
-    res.cookie('newUser', false);
-    res.cookie('isEmployee', true, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });//secure:true
-    res.send("You got the cookies");
-});
-
-app.get('read-cookies', (req, res) => {
-    const cookies = req.cookies;
-    console.log(cookies);
-
-    res.json(cookies);
-});
 
 const CONNECTION_URL = "mongodb+srv://fsdproject:fsdproject007@cluster0.cnnlb.mongodb.net/FSDProject?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;

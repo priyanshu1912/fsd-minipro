@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import pkg from "validator";
+
+const { isEmail } = pkg;
 
 const facultySchema = new mongoose.Schema({
     name: {
