@@ -43,7 +43,7 @@ function Register() {
             const data = res.data
             if(data.status===200){
                 setError(true)
-                // navigate('/dashboard',{state:data})
+                navigate('/dashboard',{state:data})
             }
             if(data.status===400){
                 // setMessage({...message,type:'error',value:data.message})
@@ -124,7 +124,7 @@ function Register() {
                             <AiOutlineUserAdd/>
                             <input className='form-element-input' type="text" placeholder='Enter name' name='name' value={registerData.name} onChange={handleRegisterChange}/>
                         </div>
-                        <div className='field-error'>{errors.name}</div>
+                        <div className='field-error'>{errors && errors.name}</div>
                     </div>
 
                     <div className='form-element'>
@@ -133,7 +133,7 @@ function Register() {
                             <AiOutlineUser/>
                             <input className='form-element-input' type="text" placeholder='Enter username' name='username' value={registerData.username} onChange={handleRegisterChange}/>
                         </div>
-                        <div className='field-error'>{errors.username}</div>
+                        <div className='field-error'>{errors && errors.username}</div>
                     </div>
 
                     <div className='form-element'>
@@ -142,7 +142,7 @@ function Register() {
                             <AiOutlineMail/>
                             <input className='form-element-input' type="text" placeholder='Enter email' name='email' value={registerData.email} onChange={handleRegisterChange}/>
                         </div>
-                        <div className='field-error'>{errors.email}</div>
+                        <div className='field-error'>{errors && errors.email}</div>
                     </div>
 
                     <div className='form-element'>
@@ -159,7 +159,7 @@ function Register() {
                             <AiOutlineLock/>
                             <input className='form-element-input' type="text" placeholder='Enter password' name='password' value={registerData.password} onChange={handleRegisterChange}/>
                         </div>
-                        <div className='field-error'>{errors.password}</div>
+                        <div className='field-error'>{errors && errors.password}</div>
                     </div>
                 </form>
 

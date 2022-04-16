@@ -11,6 +11,7 @@ function Profile(props) {
     })
 
     const userData = props.userData
+    const userProjects = userData.currentProjects
     console.log(userData)
 
     const addNewProject = (value) => {
@@ -66,7 +67,18 @@ function Profile(props) {
                     <IoAddCircleOutline className='edit-button' onClick={()=>addNewProject('project')}/>
                 </div>
                 <div className='projects-inner-container'>
-                    No projects added
+                    {
+                        userProjects.length===0 ?
+                        <>No projects added</>
+                        :
+                        userProjects.map(item => {
+                            return (
+                                <>
+                                <div>{item.title}</div>
+                                </>
+                            )
+                        })
+                    }
                 </div>
             </div>
             <div className='skills'>
@@ -82,7 +94,10 @@ function Profile(props) {
 
         <div className='project-container'>
             <div className='projects'>
-                <div>Achievements</div>
+                <div style={{display:'flex',alignItems:'center'}}>
+                    <div>Achievements</div>
+                    <IoAddCircleOutline className='edit-button' onClick={()=>addNewProject('achievement')}/>
+                </div>
             </div>
             {/* <div className='skills'>
                 <div>Links</div>
@@ -95,7 +110,7 @@ function Profile(props) {
 
         {
             newForm.open &&
-            <NewForm text={newForm.text} setNewForm={setNewForm} newForm={newForm} />
+            <NewForm userData={userData} text={newForm.text} setNewForm={setNewForm} newForm={newForm} />
         }
     </div>
     </>

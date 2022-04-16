@@ -1,18 +1,27 @@
 import React,{useState} from 'react'
 import './NewForm.css'
 import {IoCloseSharp} from 'react-icons/io5'
+import axios from 'axios'
 
 function NewForm(props) {
-    const {newForm, setNewForm, text} = props
+    const {newForm, setNewForm, text, userData} = props
 
     const [formData,setFormData] = useState({
         title: '',
-        description: '',
-        link: ''
+        body: '',
+        url: ''
     })
 
     const addData = () => {
         console.log({formData})
+
+        axios.patch(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/${text}s`,formData)
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
 
         setNewForm({
             ...newForm,
@@ -21,8 +30,8 @@ function NewForm(props) {
 
         setFormData({
             title: '',
-            description: '',
-            link: ''
+            body: '',
+            url: ''
         })
     }
 
@@ -51,10 +60,10 @@ function NewForm(props) {
                 <input onChange={handleChange} name='title' value={formData.title} className='newform-input' type='text' placeholder='Title'/>
             </div>
             <div>
-                <input onChange={handleChange} name='description' value={formData.description} className='newform-input' type='text' placeholder='Description'/>
+                <input onChange={handleChange} name='body' value={formData.body} className='newform-input' type='text' placeholder='Description'/>
             </div>
             <div>
-                <input onChange={handleChange} name='link' value={formData.link} className='newform-input' type='text' placeholder='Link'/>
+                <input onChange={handleChange} name='url' value={formData.url} className='newform-input' type='text' placeholder='Url'/>
             </div>
             <div className='add-button' onClick={addData}>Add</div>
         </form>
