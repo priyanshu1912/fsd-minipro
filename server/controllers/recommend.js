@@ -5,19 +5,21 @@ import ClubModel from "../models/clubModel.js";
 export const recommendPeople = async (req, res) => {
     const type = req.params['type'];
     const username = req.params['username'];
+    let model;
 
     if (type === "student") {
-        var user = await StudentModel.findOne({ username });
+        model = StudentModel;
     }
     else {
-        var user = await FacultyModel.findOne({ username });
+        model = FacultyModel;
     }
 
+    const user = await model.findOne({ username });
     if (user === null) {
         res.status(400).json("No user found!");
     }
     else {
-        var recommended = await StudentModel.find({ $and: [{ "program": user.program }, { "username": { $ne: user.username } }] }).limit(5).lean();
+        var recommended = await model.find({ $and: [{ "program": user.program }, { "username": { $ne: user.username } }] }).limit(5).lean();
         res.status(200).json({ recommended });
     }
 }
