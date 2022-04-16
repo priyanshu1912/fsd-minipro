@@ -82,6 +82,13 @@
 .about-content {
     color: grey;
     font-size: 2.3vh;
+    width: 100%;
+    font-family: Poppins;
+    border: none;
+    padding: 1vh 1vw;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
 }
 
 .contact-element {
@@ -93,13 +100,24 @@
 }
 
 .contact-icon {
-    font-size: 20px;
+    font-size: 25px;
     margin-right: 0.5vw;
 }
 
 .project-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5vh;
+}
+
+.projects-inner-container {
+    font-size: 2.2vh;
+    color: grey;
+}
+
+.publications-inner-container {
+    font-size: 2.2vh;
+    color: grey;
 }
 
 .projects {
@@ -118,5 +136,21 @@
     font-size: 20px;
 }
 .edit-button:hover {
+    color: #2196f3;
+}
+
+.save-button {
+    display: inline;
+    cursor: pointer;
+    border: 1px solid #2196f3;
+    color: white;
+    background-color: #2196f3;
+    border-radius: 15px;
+    text-align: center;
+    padding: 1vh 1vw;
+    font-size: 2.2vh;
+}
+.save-button:hover {
+    background-color: white;
     color: #2196f3;
 }

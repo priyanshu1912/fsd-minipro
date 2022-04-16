@@ -32,3 +32,8 @@
 .back:hover {
     text-decoration: underline black;
 }
+
+.field-error {
+    font-size: 2vh;
+    color: red;
+}

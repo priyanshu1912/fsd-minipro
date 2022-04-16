@@ -21,14 +21,14 @@ export const loginUser = async (req, res) => {
                 if (auth) {
                     const token = createToken(student._id);
                     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-                    res.status(200).json({ id: student._id });
+                    res.send({status: 200, id: student._id , data: student});
                 }
                 else {
-                    res.status(400).json("Invalid Username/Password!!");
+                    res.send({status: 400, message:"Invalid Username/Password!!"});
                 }
             }
             else {
-                res.status(400).json("User not found!");
+                res.send({status:400, message:"User not found!"});
             }
         }
         else {
@@ -38,14 +38,14 @@ export const loginUser = async (req, res) => {
                 if (auth) {
                     const token = createToken(faculty._id);
                     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-                    res.status(200).json({ id: faculty._id });
+                    res.send({status: 200, id: faculty._id, data: faculty});
                 }
                 else {
-                    res.status(400).json("Invalid Username/Password!!");
+                    res.send({status:400, message:"Invalid Username/Password!!"});
                 }
             }
             else {
-                res.status(400).json("User not found!");
+                res.send({status:400, message:"User not found!"});
             }
         }
     }
