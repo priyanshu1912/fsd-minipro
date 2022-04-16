@@ -19,7 +19,7 @@ export const recommendPeople = async (req, res) => {
         res.status(400).json("No user found!");
     }
     else {
-        var recommended = await model.find({ $and: [{ "program": user.program }, { "username": { $ne: user.username } }] }).limit(5).lean();
+        const recommended = await model.find({ $and: [{ "program": user.program }, { "username": { $ne: user.username } }] }).limit(5).lean();
         res.status(200).json({ recommended });
     }
 }
@@ -33,7 +33,7 @@ export const recommendClubs = async (req, res) => {
         res.status(400).json("No user found!");
     }
     else {
-        var recommended = await ClubModel.find({ $and: [{ "department": club.department }, { "id": { $ne: user.id } }] }).limit(5).lean();
+        var recommended = await ClubModel.find({ $and: [{ "department": club.department }, { "id": { $ne: club.id } }] }).limit(5).lean();
         res.status(200).json({ recommended });
     }
 }

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import ProjectModel from "../models/projectModel.js";
+import FacultyModel from "../models/facultyModel.js";
 
 const handleErrors = (err) => {
     let errors = { title: '', message: '', creator: '' };
@@ -28,6 +29,7 @@ export const createProject = async (req, res) => {
     const newProject = new ProjectModel(project);
     try {
         await newPost.save();
+        // await FacultyModel.findByIdAndUpdate({})
         res.status(201).json(newProject);
     }
     catch (error) {
