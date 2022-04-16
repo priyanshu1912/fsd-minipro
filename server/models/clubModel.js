@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-
+import mongoose from "mongoose";
 
 const clubSchema = new mongoose.Schema({
     name: {
@@ -14,24 +13,25 @@ const clubSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    department: {
+        type: String,
+        required: true
+    },
     numberOfStudents: {
         type: Number,
         required: true,
-        default:0
+        default: 0
     },
-    students:{
-        type:[StudentModel],
+    students: {
+        type: [String],
     }
-    
 });
- 
+
 
 //New we need to create a collection
-const clubModel = new mongoose.model("club",clubSchema);
+const ClubModel = new mongoose.model("club", clubSchema);
+
+export default ClubModel;
 
 
-module.exports = clubModel;
 
-
-  
-  

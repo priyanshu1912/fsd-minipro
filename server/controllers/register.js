@@ -66,7 +66,7 @@ export const registerUser = (req, res) => {
             newFaculty.save(function (err, newFaculty) {
                 if (err) {
                     const errors = handleErrors(err);
-                    res.send({status:400, errors});
+                    res.send({ status: 400, errors });
                 } else {
                     res.send({ status: 200, message: "Faculty record inserted!", data: newFaculty });
                 }

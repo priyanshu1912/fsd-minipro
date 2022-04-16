@@ -7,6 +7,8 @@ import "cookie-parser";
 import loginRoute from './routers/login.js';
 import registerRoute from './routers/register.js';
 import projectRoutes from './routers/projects.js';
+import updateRoute from "./routers/update.js";
+import recommendedRoute from "./routers/recommend.js";
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.use(cors());
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 app.use('/projects', projectRoutes);
+app.use('/update', updateRoute);
+app.use('/recommend', recommendedRoute);
 
 const CONNECTION_URL = "mongodb+srv://fsdproject:fsdproject007@cluster0.cnnlb.mongodb.net/FSDProject?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
