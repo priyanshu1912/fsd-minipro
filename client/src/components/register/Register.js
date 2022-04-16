@@ -3,6 +3,7 @@ import './Register.css'
 import {VscPerson,VscOrganization} from 'react-icons/vsc'
 import {AiOutlineUser,AiOutlineLock} from 'react-icons/ai'
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 function Register() {
     const navigate = useNavigate()
@@ -10,17 +11,26 @@ function Register() {
     // const [registerAs,setRegisterAs] = useState('mentor')
 
     const [registerData,setRegisterData] = useState({
-        type: 'mentor',
+        userType: 'Faculty',
+        username:'',
         name:'',
         email:'',
         password:'',
-        image:''
+        image:'',
+        program:''
     })
 
     const registerUser = (e) => {
         e.preventDefault()
         console.log({registerData})
-        navigate('/dashboard')
+
+        axios.post('http://localhost:5000/register',registerData)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     const handleRegisterChange = (e) => {
@@ -59,11 +69,11 @@ function Register() {
                 <>
                 <div className='login-heading'>AMISOCIAL register</div>
                 <div className='login-as-container'>
-                    <div className={registerData.type==='mentor'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,type:'mentor'})}>
+                    <div className={registerData.userType==='Faculty'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,userType:'Faculty'})}>
                         <VscPerson className='login-as-icon'/>
-                        <div>mentor</div>
+                        <div>faculty</div>
                     </div>
-                    <div className={registerData.type==='student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,type:'student'})}>
+                    <div className={registerData.userType==='Student'?'login-as-icons-active':'login-as-icons-unactive'} onClick={() => setRegisterData({...registerData,userType:'Student'})}>
                         <VscOrganization className='login-as-icon'/>
                         <div>student</div>
                     </div>
@@ -79,10 +89,26 @@ function Register() {
                     </div>
 
                     <div className='form-element'>
+                        <div className='form-input-title'>Username</div>
+                        <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
+                            <AiOutlineUser/>
+                            <input className='form-element-input' type="text" placeholder='Enter username' name='username' value={registerData.username} onChange={handleRegisterChange}/>
+                        </div>
+                    </div>
+
+                    <div className='form-element'>
                         <div className='form-input-title'>Email-id</div>
                         <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
                             <AiOutlineLock/>
                             <input className='form-element-input' type="text" placeholder='Enter email' name='email' value={registerData.email} onChange={handleRegisterChange}/>
+                        </div>
+                    </div>
+
+                    <div className='form-element'>
+                        <div className='form-input-title'>Program</div>
+                        <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
+                            <AiOutlineUser/>
+                            <input className='form-element-input' type="text" placeholder='Enter program' name='program' value={registerData.program} onChange={handleRegisterChange}/>
                         </div>
                     </div>
 
