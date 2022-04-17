@@ -4,24 +4,37 @@ import Feeds from '../../feeds/Feeds'
 import './Overview.css'
 
 function Overview(props) {
-  const [recommended,setRecommended] = useState(null)
+  const [recommendedPeople,setRecommendedPeople] = useState(null)
+  const [recommendedClub,setRecommendedClub] = useState(null)
   const {userData} = props
 
   useEffect(()=>{
     axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`)
     .then(res=>{
-      setRecommended(res.data.recommended)
+      setRecommendedPeople(res.data.recommended)
     })
     .catch(err=>{
       console.log(err)
     })
     
-    // axios.post(`http://localhost:5000/recommend/club/${userData.username}`)
+    // axios.post(`http://localhost:5000/recommend/club/${userData._id}`)
     // .then(res=>{
     //   console.log(res)
-    //   setRecommended(res.data.recommended)
     // })
     // .catch(err=>{
+    //   console.log(err)
+    // })
+
+    // Promise.all([
+    //   axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`),
+    //   axios.post(`http://localhost:5000/recommend/club/${userData._id}`)
+    // ])
+    // .then(res => {
+    //   setRecommendedPeople(res[0].data.recommeded)
+    //   setRecommendedClub(res[1].data)
+    //   console.log(res[1].data)
+    // })
+    // .catch(err => {
     //   console.log(err)
     // })
   },[])
@@ -37,27 +50,19 @@ function Overview(props) {
         <div className='recommended-container'>
           <div className='recommended-heading'>Recommended clubs</div>
           <div className='recommended-inner-container'>
-            <div className='group'>
-              <div className='group-image'>
-                <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img'
-                style={{width:'30px'}}/>
+            {
+              recommendedClub && recommendedClub.length !== 0 &&
+              <div className='group'>
+                <div className='group-image'>
+                  <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img'
+                  style={{width:'30px'}}/>
+                </div>
+                <div>
+                  <div className='group-name'>Club name</div>
+                  <div className='group-desc'>Lorem ipsum dolor sit amet.</div>
+                </div>
               </div>
-              <div>
-                <div className='group-name'>Club name</div>
-                <div className='group-desc'>Lorem ipsum dolor sit amet.</div>
-              </div>
-            </div>
-
-            <div className='group'>
-              <div className='group-image'>
-                <img src='https://thumbs.dreamstime.com/b/happy-cartoon-monster-one-eye-cyclops-face-vector-halloween-monster-square-avatar-funny-cartoon-monster-face-vector-halloween-160465254.jpg' alt='grp-img'
-                style={{width:'30px'}}/>
-              </div>
-              <div>
-                <div className='group-name'>Club name</div>
-                <div className='group-desc'>Lorem ipsum dolor sit amet.</div>
-              </div>
-            </div>
+            }
           </div>
         </div>
 
@@ -65,10 +70,10 @@ function Overview(props) {
           <div className='people-heading'>People you may know</div>
           <div className='people-inner-container'>
             {
-              recommended && recommended.length !== 0 &&
+              recommendedPeople && recommendedPeople.length !== 0 &&
               <>
               {
-                recommended.map(item => {
+                recommendedPeople.map(item => {
                   return (
                     <div className='people'>
                       <div style={{display:'flex',alignItems:'center'}}>

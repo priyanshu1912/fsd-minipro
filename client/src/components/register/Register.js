@@ -28,11 +28,11 @@ function Register() {
         program:''
     })
 
-    useEffect(()=>{
-        setTimeout(()=>{
-            setError(false)
-        },2000)
-    },[isError])
+    // useEffect(()=>{
+    //     setTimeout(()=>{
+    //         setError(false)
+    //     },2000)
+    // },[isError])
 
     const registerUser = (e) => {
         e.preventDefault()
@@ -43,7 +43,9 @@ function Register() {
             const data = res.data
             if(data.status===200){
                 setError(true)
-                navigate('/dashboard',{state:data})
+                setTimeout(()=>{
+                    navigate('/login')
+                },1500)
             }
             if(data.status===400){
                 // setMessage({...message,type:'error',value:data.message})

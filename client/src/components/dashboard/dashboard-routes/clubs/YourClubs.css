@@ -1,6 +1,5 @@
 .your-club-container {
-    margin: 5vh 0;
-    width: 50%;
+    width: 100%;
 }
 
 .your-club {
@@ -14,21 +13,33 @@
     box-shadow: 2px 0 10px rgb(230, 230, 230);
     cursor: pointer;
 }
-.your-club:hover {
+.selected-club {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e0f1ff;
+    border-radius: 15px;
+    padding: 1.5vh 1vw;
+    margin: 2vh 0;
+    box-shadow: 2px 0 10px rgb(230, 230, 230);
+    cursor: pointer;
+    color: white;
+}
+/* .your-club:hover {
     background-color: #2196f3;
 }
 .your-club:hover .your-club-name{
-    /* color: #01579b; */
     color: white;
 }
 .your-club:hover .your-club-desc{
-    /* color: #2196f3; */
     color: white;
 }
 .your-club:hover .remove-club {
     color: white;
     border: 1px solid white;
-}
+} */
+
+
 
 .your-club-name {
     font-size: 2.5vh;
@@ -58,8 +69,8 @@
     font-size: 2vh;
     cursor: pointer;
 }
-/* .remove-club:hover {
+.remove-club:hover {
     background-color: red;
     color: white;
     border: 1px solid red;
-} */
+}

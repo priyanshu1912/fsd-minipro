@@ -2,6 +2,11 @@ import React from 'react'
 import './ExploreClubs.css'
 
 function ExploreClubs() {
+
+    const joinClub = () => {
+        
+    }
+
   return (
     <div className='explore-clubs'>
         <div className='your-club'>
@@ -16,7 +21,7 @@ function ExploreClubs() {
                     </div>
                 </div>
             </div>
-            <div className='join-club'>join club</div>
+            <div className='join-club' onClick={joinClub}>join club</div>
         </div>
 
         <div className='your-club'>

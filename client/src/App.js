@@ -4,6 +4,12 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Login from './components/login/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import Register from './components/register/Register';
+import {withStore} from 'react-context-hook'
+
+const initialState = {
+  clubData: '',
+  selected: ''
+}
 
 function App() {
   return (
@@ -18,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default withStore(App, initialState);
