@@ -44,6 +44,7 @@ export const updateURL = async (req, res) => {
 
 
 export const addProject = async (req, res) => {
+    console.log(req.body)
     const type = req.params['type'];
     const username = req.params['username'];
     const attr = req.params['attr'];

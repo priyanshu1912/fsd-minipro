@@ -8,14 +8,13 @@ function Overview(props) {
   const {userData} = props
 
   useEffect(()=>{
-    // axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`)
-    // .then(res=>{
-    //   console.log(res)
-    //   setRecommended(res.data.recommended)
-    // })
-    // .catch(err=>{
-    //   console.log(err)
-    // })
+    axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`)
+    .then(res=>{
+      setRecommended(res.data.recommended)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
     
     // axios.post(`http://localhost:5000/recommend/club/${userData.username}`)
     // .then(res=>{
@@ -65,23 +64,24 @@ function Overview(props) {
         <div className='people-container'>
           <div className='people-heading'>People you may know</div>
           <div className='people-inner-container'>
-            <div className='people'>
-              <div style={{display:'flex',alignItems:'center'}}>
-                <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" 
-                className='people-image'/>
-                <div className='people-name'>Priyanshu</div>
-              </div>
-              <div className='connect'>connect</div>
-            </div>
-
-            <div className='people'>
-              <div style={{display:'flex',alignItems:'center'}}>
-                <img src="https://th.bing.com/th/id/R.47e108b2aecf920b7818f3afc483ec96?rik=DRdxpbqhHTIF8A&riu=http%3a%2f%2falbaniandubs.weebly.com%2fuploads%2f5%2f7%2f8%2f2%2f57825701%2fwalter-spies-in-disguise-2019_orig.png&ehk=RTcJunS39qQ1MWAHdI9q7keWNgx5l4PhhWT8LkC62QE%3d&risl=&pid=ImgRaw&r=0" 
-                className='people-image'/>
-                <div className='people-name'>Priyanshu</div>
-              </div>
-              <div className='connect'>connect</div>
-            </div>
+            {
+              recommended && recommended.length !== 0 &&
+              <>
+              {
+                recommended.map(item => {
+                  return (
+                    <div className='people'>
+                      <div style={{display:'flex',alignItems:'center'}}>
+                        <img src={item.profilePhoto} className='people-image'/>
+                        <div className='people-name'>{item.name}</div>
+                      </div>
+                      <div className='connect'>connect</div>
+                    </div>
+                  )
+                })
+              }
+              </>
+            }
           </div>
         </div>
       </div>
