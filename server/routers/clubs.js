@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import clubModel from "../models/clubModel.js";
 import studentModel from "../models/studentModel.js";
+import postModel from "../models/postModel.js";
 
 const app=express();
 app.use(express.json());
@@ -84,6 +85,80 @@ app.post("/:studentId/join/:clubId",async function(req,res){
     { $push: { clubs: clubId } }
   );
   res.json({ message: 'club joined successfully' });
+});
+
+app.post("/:studentId/leave/:clubId",async function(req,res){
+    
+  const clubId=req.params.clubId;
+  const studentId=req.params.studentId;
+
+  // find club and add studentID in array
+  await clubModel.update(
+    { _id: clubId }, 
+    { $pull: { students: studentId } }
+    
+  );
+  // find student and add clubID in array
+  await studentModel.update(
+    { _id: studentId }, 
+    { $pull: { clubs: clubId } }
+  );
+  res.json({ message: 'club left successfully' });
+});
+
+app.post("/:clubId/createPost",async function(req,res){
+    
+  const clubId=req.params.clubId;
+  const newPost= new postModel({
+    title: req.body.title,
+    description: req.body.description,
+    // creator: req.params.id,
+    tags: req.body.tags
+  });
+
+  newPost.save(function(err){
+    if(err)
+      console.log(err);
+  });
+
+  const post1={
+    title: newPost.title,
+    description: newPost.description,
+    createdAt: newPost.createdAt
+  }
+
+  // find club and add new post in array
+  await clubModel.update(
+    { _id: clubId }, 
+    { $push: { posts: post1 } }
+  );
+  res.status(201).json(newPost);
+  res.json({ message: 'post created successfully' });
+});
+
+app.get("/:clubId/post",async function(req,res){
+    
+  const clubId=req.params.clubId;
+
+  clubModel.find({clubId},function(err,clubs){
+    if(!err)
+    {
+      if(clubs){
+
+        res.json(clubs[0].posts.sort(function(a,b){
+          return new Date(b.date) - new Date(a.date);
+        }));
+        // res.send(JSON.stringify(clubs));
+      }
+      else{
+        console.log("clubs not found");
+
+      }
+    } 
+  });
+
+
+
 });
 
 export default app;
