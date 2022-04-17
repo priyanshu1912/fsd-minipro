@@ -4,7 +4,7 @@ import { getProject, createProject, updateProject, deleteProject, applyProject }
 const router = express.Router();
 
 router.get('/', getProject);
-router.post('/', createProject);
+router.post('/:username', createProject);
 router.patch('/:id', updateProject);
 router.delete('/:id', deleteProject);
 router.patch('/:id/apply', applyProject);

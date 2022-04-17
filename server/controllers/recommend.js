@@ -30,10 +30,11 @@ export const recommendClubs = async (req, res) => {
     var club = await ClubModel.findOne({ id });
 
     if (club === null) {
-        res.status(400).json("No user found!");
+        res.status(400).json("No club found!");
     }
     else {
-        var recommended = await ClubModel.find({ $and: [{ "department": club.department }, { "id": { $ne: club.id } }] }).limit(5).lean();
+        // var recommended = await ClubModel.find({ $and: [{ "department": club.department }, { "id": { $ne: club.id } }] }).limit(5).lean();
+        var recommended = await ClubModel.find().limit(5).lean();
         res.status(200).json({ recommended });
     }
 }

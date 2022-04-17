@@ -4,6 +4,7 @@ const projectSchema = new mongoose.Schema({
     title: { type: String, required: true },
     message: { type: String, required: true },
     creator: { type: String, required: true },
+    creatorID: String,
     tags: [String],
     selectedFile: String,
     applied: {

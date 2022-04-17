@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import ProjectModel from "../models/projectModel.js";
 import FacultyModel from "../models/facultyModel.js";
+import nodemailer from "nodemailer";
 
 const handleErrors = (err) => {
     let errors = { title: '', message: '', creator: '' };
@@ -26,10 +27,13 @@ export const getProject = async (req, res) => {
 
 export const createProject = async (req, res) => {
     const project = req.body;
+    const username = req.params['username'];
     const newProject = new ProjectModel(project);
+
     try {
-        await newPost.save();
-        // await FacultyModel.findByIdAndUpdate({})
+        await newProject.save();
+        const faculty = await FacultyModel.findOneAndUpdate({ username }, { $push: { projects: newProject._id } });
+        await ProjectModel.findOneAndUpdate({ _id: newProject._id }, { $set: { creatorID: faculty._id } });
         res.status(201).json(newProject);
     }
     catch (error) {
@@ -43,7 +47,7 @@ export const updateProject = async (req, res) => {
     const project = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(_id))
-        return res.status(404).json('No post with that ID!');
+        return res.status(404).json('No project with that ID!');
 
     const updatedProject = await ProjectModel.findByIdAndUpdate(_id, { ...project, _id }, { new: true });
 
@@ -61,14 +65,53 @@ export const deleteProject = async (req, res) => {
 }
 
 export const applyProject = async (req, res) => {
-    const { id: _id } = req.params;
+    const id = req.params['id'];
 
-    if (!mongoose.Types.ObjectId.isValid(_id))
-        return res.status(404).send('No post with that ID!');
+    const output = `
+        <h2>You have a new response on your project</h2>
+        <h3>Here are the details of the user who wish to help you:</h3>
+        <ul>
+            <li>Name: ${req.body.name}</li>
+            <li>Email: ${req.body.email}</li>
+            <li>Program: ${req.body.program}</li>
+        </ul>
+        <p>Please feel free to contact him/her for your project!</p>
+    `;
+
+    console.log(id);
+
+    if (!mongoose.Types.ObjectId.isValid(id))
+        return res.status(404).send('No project with that ID!');
 
     const project = await ProjectModel.findById(id);
     const updatedProject = await ProjectModel.findByIdAndUpdate(id, { appliedCount: project.appliedCount + 1 }, { new: true });
 
-    res.json(updatedProject);
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: "mail.gauravsingh.live",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: "fsd@gauravsingh.live", // generated ethereal user
+            pass: "7AEF8~_bzAP!", // generated ethereal password
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+        from: '"AmiSocial" <fsd@gauravsingh.live>', // sender address
+        to: "sgaurav497@gmail.com", // list of receivers
+        subject: "Available to help you with your project", // Subject line
+        text: "Hello world?", // plain text body
+        html: output, // html body
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+    res.status(200).json("Mail sent successfully!");
 }
 
