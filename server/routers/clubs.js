@@ -87,6 +87,25 @@ app.post("/:studentId/join/:clubId",async function(req,res){
   res.json({ message: 'club joined successfully' });
 });
 
+app.post("/:studentId/leave/:clubId",async function(req,res){
+    
+  const clubId=req.params.clubId;
+  const studentId=req.params.studentId;
+
+  // find club and add studentID in array
+  await clubModel.update(
+    { _id: clubId }, 
+    { $pull: { students: studentId } }
+    
+  );
+  // find student and add clubID in array
+  await studentModel.update(
+    { _id: studentId }, 
+    { $pull: { clubs: clubId } }
+  );
+  res.json({ message: 'club left successfully' });
+});
+
 app.post("/:clubId/createPost",async function(req,res){
     
   const clubId=req.params.clubId;
@@ -138,19 +157,7 @@ app.get("/:clubId/post",async function(req,res){
     } 
   });
 
-  // clubModel.find({},function(err,club){
-  //   if(!err)
-  //   {
-  //     if(club){
-  //       res.json(club);
-  //       // res.send(JSON.stringify(clubs));
-  //     }
-  //     else{
-  //       console.log("clubs not found");
 
-  //     }
-  //   } 
-  // });
 
 });
 
