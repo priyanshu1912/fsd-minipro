@@ -11,6 +11,8 @@ import projectRoutes from './routers/projects.js';
 import updateRoute from "./routers/update.js";
 import recommendedRoute from "./routers/recommend.js";
 import userRoute from "./routers/users.js";
+import postRoutes from './routers/post.js';
+import clubRoutes from './routers/clubs.js';
 
 const app = express();
 
@@ -26,6 +28,8 @@ app.use('/register', registerRoute);
 app.use('/projects', projectRoutes);
 app.use('/update', updateRoute);
 app.use('/recommend', recommendedRoute);
+app.use('/post', postRoutes);
+app.use('/club', clubRoutes);
 
 
 //Database Connection
