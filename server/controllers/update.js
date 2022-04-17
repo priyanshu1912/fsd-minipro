@@ -43,12 +43,7 @@ export const updateURL = async (req, res) => {
 }
 
 
-<<<<<<< HEAD
-export const addProject = async (req, res) => {
-    console.log(req.body)
-=======
 export const updateProfileItem = async (req, res) => {
->>>>>>> 75a01a3be75a9152b548eb3a53a2f5abc1c65c2f
     const type = req.params['type'];
     const username = req.params['username'];
     const attr = req.params['attr'];
