@@ -36,6 +36,7 @@
     padding: 1.5vh 1vw;
     font-family: Poppins;
     border: none;
+    color: grey;
 }
 .form-element-input:focus {
     outline: none;
@@ -54,6 +55,9 @@
 }
 .form-login-button:hover {
     background-color: white;
+    color: #2196f3;
+}
+.form-login-button:hover .loading-icon {
     color: #2196f3;
 }
 
@@ -121,4 +125,23 @@
 
 .login-as-icon {
     font-size: 20px;
+}
+
+
+.error-container {
+    background-color: white;
+    position: absolute;
+    right: 5vw;
+    top: 5vh;
+    box-shadow: 2px 0 10px rgb(230, 230, 230);
+    padding: 1.5vh 1vw;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message {
+    font-size: 2.2vh;
+    color: grey;
 }

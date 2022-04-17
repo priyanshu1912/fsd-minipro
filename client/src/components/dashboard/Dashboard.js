@@ -10,9 +10,12 @@ import Profile from './dashboard-routes/profile/Profile'
 import Clubs from './dashboard-routes/clubs/Clubs'
 import DashboardNav from '../dashboard-nav/DashboardNav'
 import Projects from './dashboard-routes/projects/Projects'
+import {useLocation} from 'react-router-dom'
 
-function Dashboard(props) {
-    console.log(props)
+function Dashboard() {
+    const location = useLocation()
+    const userData = location.state.data
+
     const [activeTab,setActiveTab] = useState('dashboard')
 
   return (
@@ -58,15 +61,15 @@ function Dashboard(props) {
         </div>
 
         <div className='dashboard-main'>
-            <DashboardNav/>
+            <DashboardNav userData={userData}/>
             
             {
                 activeTab==='dashboard' &&
-                <Overview/>
+                <Overview userData={userData}/>
             }
             {
                 activeTab==='profile' &&
-                <Profile/>
+                <Profile userData={userData}/>
             }
             {
                 activeTab==='clubs' &&

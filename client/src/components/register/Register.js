@@ -1,14 +1,22 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './Register.css'
 import {VscPerson,VscOrganization} from 'react-icons/vsc'
-import {AiOutlineUser,AiOutlineLock} from 'react-icons/ai'
+import {AiOutlineUserAdd,AiOutlineUser,AiOutlineLock,AiOutlineMail,AiOutlineBook} from 'react-icons/ai'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import {MdError,MdCheckCircle} from 'react-icons/md'
+import PulseLoader from "react-spinners/PulseLoader";
 
 function Register() {
     const navigate = useNavigate()
 
-    // const [registerAs,setRegisterAs] = useState('mentor')
+    const [loading,setLoading] = useState(false)
+    const [isError,setError] = useState(false)
+    const [message, setMessage] = useState({
+        type:'',
+        value:''
+    })
+    const [errors,setErrors] = useState(null)
 
     const [registerData,setRegisterData] = useState({
         userType: 'Faculty',
@@ -20,15 +28,30 @@ function Register() {
         program:''
     })
 
+    useEffect(()=>{
+        setTimeout(()=>{
+            setError(false)
+        },2000)
+    },[isError])
+
     const registerUser = (e) => {
         e.preventDefault()
         console.log({registerData})
 
         axios.post('http://localhost:5000/register',registerData)
         .then(res => {
-            if(res.data.status===200){
-                navigate('/dashboard',{state:res.data.data})
+            const data = res.data
+            if(data.status===200){
+                setError(true)
+                navigate('/dashboard',{state:data})
             }
+            if(data.status===400){
+                // setMessage({...message,type:'error',value:data.message})
+                // setError(true)
+                setNext(false)
+                setErrors(data.errors)
+            }
+            console.log(res.data)
         })
         .catch(err => {
             console.log(err)
@@ -65,6 +88,19 @@ function Register() {
 
   return (
     <div className='login-page'>
+        {
+            isError &&
+            <div className='error-container'>
+                {/* {
+                    message.type==='error' ? 
+                    <MdError style={{color:'red',fontSize:'35px',marginRight:'0.5vw'}}/> 
+                    : 
+                    <MdCheckCircle style={{color:'green',fontSize:'35px',marginRight:'0.5vw'}}/>
+                } */}
+                <MdCheckCircle style={{color:'green',fontSize:'35px',marginRight:'0.5vw'}}/> 
+                <div className='error-message'>User created successfully</div>
+            </div>
+        }
         <div className='login-form'>
             {
                 next===false ?
@@ -85,9 +121,10 @@ function Register() {
                     <div className='form-element'>
                         <div className='form-input-title'>Your name</div>
                         <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
-                            <AiOutlineUser/>
+                            <AiOutlineUserAdd/>
                             <input className='form-element-input' type="text" placeholder='Enter name' name='name' value={registerData.name} onChange={handleRegisterChange}/>
                         </div>
+                        <div className='field-error'>{errors && errors.name}</div>
                     </div>
 
                     <div className='form-element'>
@@ -96,20 +133,22 @@ function Register() {
                             <AiOutlineUser/>
                             <input className='form-element-input' type="text" placeholder='Enter username' name='username' value={registerData.username} onChange={handleRegisterChange}/>
                         </div>
+                        <div className='field-error'>{errors && errors.username}</div>
                     </div>
 
                     <div className='form-element'>
                         <div className='form-input-title'>Email-id</div>
                         <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
-                            <AiOutlineLock/>
+                            <AiOutlineMail/>
                             <input className='form-element-input' type="text" placeholder='Enter email' name='email' value={registerData.email} onChange={handleRegisterChange}/>
                         </div>
+                        <div className='field-error'>{errors && errors.email}</div>
                     </div>
 
                     <div className='form-element'>
                         <div className='form-input-title'>Program</div>
                         <div style={{display:'flex',alignItems:'center',border:'1px solid lightgrey',paddingLeft:'1vw'}}>
-                            <AiOutlineUser/>
+                            <AiOutlineBook/>
                             <input className='form-element-input' type="text" placeholder='Enter program' name='program' value={registerData.program} onChange={handleRegisterChange}/>
                         </div>
                     </div>
@@ -120,6 +159,7 @@ function Register() {
                             <AiOutlineLock/>
                             <input className='form-element-input' type="text" placeholder='Enter password' name='password' value={registerData.password} onChange={handleRegisterChange}/>
                         </div>
+                        <div className='field-error'>{errors && errors.password}</div>
                     </div>
                 </form>
 
@@ -151,7 +191,12 @@ function Register() {
                 </div>
                 <div className='form-element'>
                     <div className='form-login-button' onClick={registerUser}>
-                        Next
+                    {
+                        loading ? 
+                        <PulseLoader color='#2196f3' size={5} />
+                        : 
+                        'Done'
+                    }
                     </div>
                 </div>
                 <div className='back' onClick={()=>setNext(false)}>

@@ -33,6 +33,7 @@ export const registerUser = (req, res) => {
     try {
         if (userType === 'Student') {
             const newStudent = new StudentModel({
+                userType: userType,
                 name: req.body.name,
                 username: req.body.username,
                 email: req.body.email,
@@ -55,6 +56,7 @@ export const registerUser = (req, res) => {
         }
         else if (userType === "Faculty") {
             const newFaculty = new FacultyModel({
+                userType: userType,
                 name: req.body.name,
                 username: req.body.username,
                 email: req.body.email,

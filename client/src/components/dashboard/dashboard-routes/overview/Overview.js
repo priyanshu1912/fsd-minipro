@@ -1,8 +1,32 @@
-import React from 'react'
+import axios from 'axios'
+import React,{useState,useEffect} from 'react'
 import Feeds from '../../feeds/Feeds'
 import './Overview.css'
 
-function Overview() {
+function Overview(props) {
+  const [recommended,setRecommended] = useState(null)
+  const {userData} = props
+
+  useEffect(()=>{
+    // axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`)
+    // .then(res=>{
+    //   console.log(res)
+    //   setRecommended(res.data.recommended)
+    // })
+    // .catch(err=>{
+    //   console.log(err)
+    // })
+    
+    // axios.post(`http://localhost:5000/recommend/club/${userData.username}`)
+    // .then(res=>{
+    //   console.log(res)
+    //   setRecommended(res.data.recommended)
+    // })
+    // .catch(err=>{
+    //   console.log(err)
+    // })
+  },[])
+
   return (
     <div className='overview'>
       <div className='container1'>

@@ -5,6 +5,9 @@ import pkg from "validator";
 const { isEmail } = pkg;
 
 const facultySchema = new mongoose.Schema({
+    userType: {
+        type: String
+    },
     name: {
         type: String,
         required: [true, 'Please enter a name'],
