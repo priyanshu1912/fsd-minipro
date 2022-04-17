@@ -46,16 +46,16 @@ const studentSchema = new mongoose.Schema({
         body: { type: String },
         url: { type: String }
     }],
-    publications: {
+    publications: [{
         title: { type: String },
         body: { type: String },
         url: { type: String }
-    },
-    achievements: {
+    }],
+    achievements: [{
         title: { type: String },
         body: { type: String },
         url: { type: String }
-    },
+    }],
     mail: { type: String },
     linkedin: { type: String },
     github: { type: String },
