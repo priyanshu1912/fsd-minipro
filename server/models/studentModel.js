@@ -59,6 +59,7 @@ const studentSchema = new mongoose.Schema({
     mail: { type: String },
     linkedin: { type: String },
     github: { type: String },
+    clubs: [String]
 }, { collection: "students" });
 
 //Hashing the password
