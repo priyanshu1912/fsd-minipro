@@ -83,9 +83,11 @@ export const applyProject = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).send('No project with that ID!');
 
-    const project = await ProjectModel.findById(id);
-    const updatedProject = await ProjectModel.findByIdAndUpdate(id, { appliedCount: project.appliedCount + 1 }, { new: true });
+    const project = await ProjectModel.findById({ _id: id });
+    const updatedProject = await ProjectModel.findByIdAndUpdate({ _id: id }, { appliedCount: project.appliedCount + 1 }, { new: true });
+    const projectOwner = await FacultyModel.findById({ _id: project.creatorID });
 
+    // console.log(projectOwner);
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
         host: "mail.gauravsingh.live",
@@ -100,10 +102,12 @@ export const applyProject = async (req, res) => {
         }
     });
 
+    const recp = projectOwner.email;
+    console.log(recp);
     // send mail with defined transport object
     let info = await transporter.sendMail({
         from: '"AmiSocial" <fsd@gauravsingh.live>', // sender address
-        to: "sgaurav497@gmail.com", // list of receivers
+        to: recp, // list of receivers
         subject: "Available to help you with your project", // Subject line
         text: "Hello world?", // plain text body
         html: output, // html body
