@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import pkg from "validator";
+import clubModel from "../models/clubModel.js";
 
 const { isEmail } = pkg;
 
@@ -59,7 +60,13 @@ const studentSchema = new mongoose.Schema({
     mail: { type: String },
     linkedin: { type: String },
     github: { type: String },
-    clubs: [String]
+    clubs: [{
+        name: { type: String },
+        faculty: { type: String },
+        description: { type: String },
+        department: { type: String },
+        students: {type: [String] }
+    }]
 }, { collection: "students" });
 
 //Hashing the password
