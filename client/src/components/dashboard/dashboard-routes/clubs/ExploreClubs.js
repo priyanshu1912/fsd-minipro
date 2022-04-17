@@ -37,7 +37,7 @@ function ExploreClubs() {
                 allClubs.map(item => {
                     return (
                         <div className='your-club'>
-                            <div style={{display:'flex',alignItems:'center'}}>
+                            <div style={{display:'flex',alignItems:'center',width:'80%'}}>
                                 <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img'
                                 className='your-club-image'/>
                                 <div>

@@ -26,6 +26,7 @@ export const updateURL = async (req, res) => {
     const username = req.params['username'];
     const attr = req.params['attr'];
     const { url } = req.body;
+    console.log(req.body)
 
     if (type === "student") {
         var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { [attr]: url }, { new: true });

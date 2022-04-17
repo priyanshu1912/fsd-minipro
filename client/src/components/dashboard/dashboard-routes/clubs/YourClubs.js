@@ -1,10 +1,15 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './YourClubs.css'
 import {useStore} from 'react-context-hook'
+import axios from 'axios'
 
 function YourClubs(props) {
     const [clubData,setClubData] = useStore('clubData')
     const [selected,setSelected] = useStore('selected')
+    const [userInfo,setUserInfo] = useStore('user')
+
+    console.log(userInfo)
+
     const {post,setPost} = props
 
     const open = (value) => {
@@ -14,8 +19,18 @@ function YourClubs(props) {
     }
 
     const removeClub = () => {
-        
+
     }
+
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/user/${userInfo.userType.toLowerCase()}/${userInfo.username}`)
+        .then(res=>{
+          console.log(res)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    },[])
 
   return (
     <div className='your-club-container'>

@@ -11,15 +11,20 @@ function OpenProject(props) {
 
     const [userInfo,setUserInfo] = useStore('user')
 
+    const applyData = {
+        name: userInfo.name,
+        email: userInfo.email,
+        program: userInfo.program
+    }
+
     const [subscribe,setSubscribe] = useState(false)
 
     const applyProject = () => {
-        axios.patch(`http://localhost:5000/projects/${projectDetails._id}/apply`,userInfo)
+        axios.patch(`http://localhost:5000/projects/${projectDetails._id}/apply`,applyData)
         .then(res=>{
             console.log(res)
             setSubscribe(true)
-            console.log(userInfo)
-        })
+        }) 
         .catch(err=>{
             console.log(err)
         })

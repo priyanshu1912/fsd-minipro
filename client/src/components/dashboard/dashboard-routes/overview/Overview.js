@@ -8,6 +8,8 @@ function Overview(props) {
   const [recommendedClub,setRecommendedClub] = useState(null)
   const {userData} = props
 
+  console.log(recommendedClub)
+
   useEffect(()=>{
     axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`)
     .then(res=>{
@@ -17,13 +19,13 @@ function Overview(props) {
       console.log(err)
     })
     
-    // axios.post(`http://localhost:5000/recommend/club/${userData._id}`)
-    // .then(res=>{
-    //   console.log(res)
-    // })
-    // .catch(err=>{
-    //   console.log(err)
-    // })
+    axios.post('http://localhost:5000/recommend/club')
+    .then(res=>{
+      setRecommendedClub(res.data.recommended)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
 
     // Promise.all([
     //   axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`),
@@ -52,19 +54,27 @@ function Overview(props) {
           <div className='recommended-inner-container'>
             {
               recommendedClub && recommendedClub.length !== 0 &&
-              <div className='group'>
-                <div className='group-image'>
-                  <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img'
-                  style={{width:'30px'}}/>
-                </div>
-                <div>
-                  <div className='group-name'>Club name</div>
-                  <div className='group-desc'>Lorem ipsum dolor sit amet.</div>
-                </div>
-              </div>
+              <>
+                {
+                  recommendedClub.map(item => {
+                    return (
+                      <div className='group'>
+                        <div className='group-image'>
+                          <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img' style={{width:'30px'}}/>
+                        </div>
+                        <div style={{width:'75%'}}>
+                          <div className='group-name'>{item.name}</div>
+                          <div className='group-desc'>{item.description}</div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </>
             }
           </div>
         </div>
+        
 
         <div className='people-container'>
           <div className='people-heading'>People you may know</div>

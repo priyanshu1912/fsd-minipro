@@ -10,6 +10,7 @@ function Profile(props) {
     const [userProjects,setUserProjects] = useState(null)
     const [userPublications,setUserPublications] = useState(null)
     const [userAchievements,setUserAchievements] = useState(null)
+
     console.log({user})
 
     const [newForm, setNewForm] = useState({
@@ -79,21 +80,21 @@ function Profile(props) {
                     <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                         <div className='contact-element'>
                             <img style={{width:'40px',height:'40px',borderRadius:'100%',objectFit:'contain'}} src="https://news.wirefly.com/sites/phonedog.com/files/styles/blog_entry/public/blog/main_image/2020/10/gmail-new-icon-2.jpg?itok=McR8B1ny"/>
-                            <input type='text' className='about-content' value={user.email}/>
+                            <input type='text' className='about-content' value={user.mail}/>
                         </div>
                         <AiFillEdit onClick={()=>addNewProject('mail')} className='social-media-edit'/>
                     </div>
                     <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                         <div className='contact-element'>
                             <img style={{width:'40px',height:'40px',borderRadius:'100%',objectFit:'contain'}} src="https://th.bing.com/th/id/OIP.URJvhubPDm723aF3_zezRwHaGa?pid=ImgDet&w=876&h=758&rs=1"/>
-                            <input type='text' className='about-content' value='Add linkedin profile'/>
+                            <input type='text' className='about-content' value={user.linkedin ? user.linkedin : 'Add linkedin profile'}/>
                         </div>
                         <AiFillEdit onClick={()=>addNewProject('linkedin')} className='social-media-edit'/>
                     </div>
                     <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                         <div className='contact-element'>
                             <img style={{width:'40px',height:'40px',borderRadius:'100%',objectFit:'contain'}} src="https://htxt.co.za/wp-content/uploads/2018/11/github-logo.jpg"/>
-                            <input type='text' className='about-content' value='Add github profile'/>
+                            <input type='text' className='about-content' value={user.github ? user.github : 'Add github profile'}/>
                         </div>
                         <AiFillEdit onClick={()=>addNewProject('github')} className='social-media-edit'/>
                     </div>
@@ -224,7 +225,7 @@ function Profile(props) {
 
         {
             newForm.open &&
-            <NewForm getUser={getUser} userData={userData} text={newForm.text} setNewForm={setNewForm} newForm={newForm} />
+            <NewForm getUser={getUser} user={user} text={newForm.text} setNewForm={setNewForm} newForm={newForm} />
         }
     </div>
     }

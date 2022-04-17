@@ -14,7 +14,7 @@ const handleErrors = (err) => {
     }
     return errors;
 }
-
+ 
 export const getProject = async (req, res) => {
     try {
         const allProjects = await ProjectModel.find();
@@ -70,7 +70,7 @@ export const applyProject = async (req, res) => {
     const output = `
         <h2>You have a new response on your project</h2>
         <h3>Here are the details of the user who wish to help you:</h3>
-        <ul>
+        <ul> 
             <li>Name: ${req.body.name}</li>
             <li>Email: ${req.body.email}</li>
             <li>Program: ${req.body.program}</li>

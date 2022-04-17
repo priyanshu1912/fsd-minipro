@@ -5,9 +5,23 @@ import axios from 'axios'
 import PulseLoader from "react-spinners/PulseLoader";
 
 function NewForm(props) {
-    const {newForm, setNewForm, text, userData, getUser} = props
+    const {newForm, setNewForm, text, user, getUser} = props
 
-    const [bio,setBio] = useState()
+    const [bio,setBio] = useState({
+        bio: user.bio
+    })
+
+    const [mail,setMail] = useState({
+        url: user.mail
+    })
+
+    const [linkedin,setLinkedin] = useState({
+        url: user.linkedin
+    })
+
+    const [github,setGithub] = useState({
+        url: user.github
+    })
 
     const [formData,setFormData] = useState({
         title: '',
@@ -16,7 +30,7 @@ function NewForm(props) {
     })
 
     const addData = () => {
-        axios.patch(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/${text}s`,formData)
+        axios.patch(`http://localhost:5000/update/${user.userType.toLowerCase()}/${user.username}/${text}s`,formData)
         .then(res=>{
             console.log(res)
             getUser()
@@ -52,7 +66,7 @@ function NewForm(props) {
     }
 
     const updateBio = () => {
-        axios.patch(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/bio`,bio)
+        axios.patch(`http://localhost:5000/update/${user.userType.toLowerCase()}/${user.username}/bio`,bio)
         .then(res=>{
             console.log(res)
             getUser()
@@ -67,6 +81,54 @@ function NewForm(props) {
         })
     }
 
+    const updateMail = () => {
+        if(text==='mail'){
+            axios.patch(`http://localhost:5000/update/${user.userType.toLowerCase()}/${user.username}/url/mail`,mail)
+            .then(res=>{
+                console.log(res)
+                getUser()
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    
+            setNewForm({
+                ...newForm,
+                open:false
+            })
+        }
+        if(text==='linkedin'){
+            axios.patch(`http://localhost:5000/update/${user.userType.toLowerCase()}/${user.username}/url/linkedin`,linkedin)
+            .then(res=>{
+                console.log(res)
+                getUser()
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    
+            setNewForm({
+                ...newForm,
+                open:false
+            })
+        }
+        if(text==='github'){
+            axios.patch(`http://localhost:5000/update/${user.userType.toLowerCase()}/${user.username}/url/github`,github)
+            .then(res=>{
+                console.log(res)
+                getUser()
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    
+            setNewForm({
+                ...newForm,
+                open:false
+            })
+        }
+    }
+
   return (
     <div className='newform-container'>
         <form className='newform'>
@@ -77,10 +139,25 @@ function NewForm(props) {
                         <IoCloseSharp onClick={closeNewForm} style={{cursor:'pointer',display:'inline-block'}}/>
                     </div>
                     <div className='newform-title'>Update {text}</div>
-                    <div>
-                        <input rows={3} onChange={e=>setBio(e.target.value)} name={text} className='newform-input' type='text'/>
-                    </div>
-                    <div className='add-button' onClick={updateBio}>Update</div>
+                    {
+                        text==='mail' &&
+                        <div>
+                            <input rows={3} onChange={e=>setMail({...mail,url:e.target.value})} name='url' value={mail.url} className='newform-input' type='text'/>
+                        </div>
+                    }
+                    {
+                        text==='linkedin' &&
+                        <div>
+                            <input rows={3} onChange={e=>setLinkedin({...linkedin,url:e.target.value})} name='url' value={linkedin.url} className='newform-input' type='text'/>
+                        </div>
+                    }
+                    {
+                        text==='github' &&
+                        <div>
+                            <input rows={3} onChange={e=>setGithub({...github,url:e.target.value})} name='url' value={github.url} className='newform-input' type='text'/>
+                        </div>
+                    }
+                    <div className='add-button' onClick={updateMail}>Update</div>
                 </>
                 :
                 text==='bio' ?
@@ -90,7 +167,7 @@ function NewForm(props) {
                     </div>
                     <div className='newform-title'>Update {text}</div>
                     <div>
-                        <textarea rows={3} onChange={e=>setBio(e.target.value)} name='bio' value={bio} className='newform-input' type='text'/>
+                        <textarea rows={3} onChange={e=>setBio({...bio,bio:e.target.value})} name='bio' value={bio.bio} className='newform-input' type='text'/>
                     </div>
                     <div className='add-button' onClick={updateBio}>Update</div>
                 </>
