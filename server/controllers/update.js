@@ -43,7 +43,7 @@ export const updateURL = async (req, res) => {
 }
 
 
-export const addProject = async (req, res) => {
+export const updateProfileItem = async (req, res) => {
     const type = req.params['type'];
     const username = req.params['username'];
     const attr = req.params['attr'];
@@ -58,9 +58,6 @@ export const addProject = async (req, res) => {
     else {
         var field = "achievements";
     }
-
-    console.log(`${attr}, ${newDoc}`);
-    console.log(newDoc);
 
     if (type === "student") {
         var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $push: { [field]: newDoc } }, { new: true });
@@ -77,7 +74,7 @@ export const addProject = async (req, res) => {
     }
 }
 
-export const deleteProject = async (req, res) => {
+export const deleteProfileItem = async (req, res) => {
     const type = req.params['type'];
     const username = req.params['username'];
     const attr = req.params['attr'];
