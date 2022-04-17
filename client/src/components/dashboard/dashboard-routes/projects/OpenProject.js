@@ -2,21 +2,27 @@ import React,{useState} from 'react'
 import './OpenProject.css'
 import {BiCheck} from 'react-icons/bi'
 import {IoIosClose} from 'react-icons/io'
+import axios from 'axios'
+import {useStore} from 'react-context-hook'
 
 function OpenProject(props) {
     const {open,setOpen} = props
+    const projectDetails = open.data.item
+
+    const [userInfo,setUserInfo] = useStore('user')
 
     const [subscribe,setSubscribe] = useState(false)
 
-    const closeProject = () => {
-        setSubscribe(true)
-
-        // setTimeout(()=>{
-        //     setOpen({
-        //         ...open,
-        //         value: false
-        //     })
-        // },[1500])
+    const applyProject = () => {
+        axios.patch(`http://localhost:5000/projects/${projectDetails._id}/apply`,userInfo)
+        .then(res=>{
+            console.log(res)
+            setSubscribe(true)
+            console.log(userInfo)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
 
   return (
@@ -26,8 +32,20 @@ function OpenProject(props) {
                 <IoIosClose onClick={()=>setOpen({...open,value:false})} style={{fontSize:'25px',cursor:'pointer'}}/>
             </div>
 
+            <div className='openproject-date'>{projectDetails.createdAt.slice(0,projectDetails.createdAt.indexOf('T'))}</div>
+
+            <div style={{display:'flex'}}>
+                <img src="https://cdn.onlinewebfonts.com/svg/img_44448.png" className='openproject-image' />
+                <div>
+                    <div className='openproject-raised'>Raised by - {projectDetails.creator}</div>
+                    <div className='openproject-title'>{projectDetails.title}</div>
+                    <div className='openproject-desc'>{projectDetails.message}</div>
+                    {/* <div>{projectDetails.tags}</div> */}
+                </div>
+            </div>
+
             <div style={{textAlign:'right'}}>
-                <div className='available' onClick={closeProject}>
+                <div className='available' onClick={applyProject}>
                     {
                         subscribe ?
                         <div className='subscribe-container'>

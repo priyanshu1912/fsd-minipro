@@ -2,9 +2,11 @@ import React,{useEffect,useState} from 'react'
 import './DashboardNav.css'
 import {IoMdArrowDropdown,IoMdNotificationsOutline} from 'react-icons/io'
 import {BiMessageSquareDetail} from 'react-icons/bi'
+import {useStore} from 'react-context-hook'
 import axios from 'axios'
 
 function DashboardNav(props) {
+  const [userInfo,setUserInfo] = useStore('user')
   const userData = props.userData
 
   const [user,setUser] = useState(null)
@@ -13,6 +15,7 @@ function DashboardNav(props) {
     axios.get(`http://localhost:5000/user/${userData.userType.toLowerCase()}/${userData.username}`)
     .then(res=>{
       setUser(res.data)
+      setUserInfo(res.data)
     })
     .catch(err=>{
       console.log(err)

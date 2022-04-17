@@ -8,7 +8,8 @@ import {withStore} from 'react-context-hook'
 
 const initialState = {
   clubData: '',
-  selected: ''
+  selected: '',
+  user: [],
 }
 
 function App() {
