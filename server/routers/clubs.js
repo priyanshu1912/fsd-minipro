@@ -107,13 +107,18 @@ app.post("/:studentId/leave/:clubId",async function(req,res){
 });
 
 app.post("/:clubId/createPost",async function(req,res){
+
+  console.log(req.body)
     
   const clubId=req.params.clubId;
   const newPost= new postModel({
     title: req.body.title,
     description: req.body.description,
-    // creator: req.params.id,
     tags: req.body.tags
+
+    // username: req.body.username,
+    // profileImage: req.body.image,
+    // content: req.body.content
   });
 
   newPost.save(function(err){

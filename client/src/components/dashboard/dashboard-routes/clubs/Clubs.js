@@ -27,12 +27,12 @@ function Clubs() {
             }
           </div>
 
-          <div style={{width:'50%'}}>
+          {/* <div style={{width:'50%'}}>
             {
               post &&
               <OpenClub/>
             }
-          </div>
+          </div> */}
         </div>
     </div>
   )
