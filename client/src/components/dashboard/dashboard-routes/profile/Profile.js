@@ -5,6 +5,8 @@ import {IoAddCircleOutline} from 'react-icons/io5'
 import NewForm from './NewForm'
 
 function Profile(props) {
+    const [bioDisabled,setBioDisabled] = useState(true)
+
     const [newForm, setNewForm] = useState({
         open: false,
         text: ''
@@ -39,8 +41,8 @@ function Profile(props) {
 
         <div className='about-container'>
             <div className='about'>
-                <div className='about-heading'>Bio <AiOutlineEdit className='edit-button'/></div>
-                <textarea type='text' rows='5' className='about-content' placeholder='Tell something about yourself' />
+                <div className='about-heading'>Bio <AiOutlineEdit onClick={()=>setBioDisabled(false)} className='edit-button'/></div>
+                <textarea disabled={bioDisabled} type='text' rows='5' className='about-content' placeholder='Bio not added' />
             </div>
             <div className='contact'>
                 <div>Contact info</div>

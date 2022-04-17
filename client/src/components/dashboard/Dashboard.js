@@ -65,7 +65,7 @@ function Dashboard() {
             
             {
                 activeTab==='dashboard' &&
-                <Overview/>
+                <Overview userData={userData}/>
             }
             {
                 activeTab==='profile' &&

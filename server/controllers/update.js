@@ -61,7 +61,7 @@ export const addProject = async (req, res) => {
 
     console.log(`${attr}, ${newDoc}`);
     console.log(newDoc);
-
+ 
     if (type === "student") {
         var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $push: { [field]: newDoc } }, { new: true });
     }
