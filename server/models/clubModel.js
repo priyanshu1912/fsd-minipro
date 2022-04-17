@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import postModel from "../models/postModel.js";
 
 const clubSchema = new mongoose.Schema({
     name: {
@@ -24,7 +25,12 @@ const clubSchema = new mongoose.Schema({
     },
     students: {
         type: [String],
-    }
+    },
+    posts: [{
+        title: { type: String },
+        description: { type: String },
+        createdAt: { type: Date }
+    }]
 });
 
 
