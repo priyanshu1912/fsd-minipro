@@ -4,15 +4,22 @@ const postSchema = mongoose.Schema({
     
     title: String,
     description: String,
-    
-    tags: [String],
-    applied: {
-        type: Number,
-        default: 0
-    },
+
     createdAt: {
         type: Date,
         default: new Date()
+    },
+    username: { type: String },
+    image: { type: String },
+    content: { type: String },
+   
+    
+    tags: {type: [String],
+        default: []
+    },
+    applied: {
+        type: Number,
+        default: 0
     },
 });
 

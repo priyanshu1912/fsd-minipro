@@ -11,7 +11,7 @@ function ExploreClubs() {
     const joinClub = (value) => {
         axios.post(`http://localhost:5000/club/${userInfo._id}/join/${value}`)
         .then(res => {
-            console.log(res)
+            console.log(res.data)
         })
         .catch(err=>{
             console.log(err)

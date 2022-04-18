@@ -27,14 +27,12 @@ const clubSchema = new mongoose.Schema({
         type: [String],
     },
     posts: [{
-        title: { type: String },
-        description: { type: String },
-        createdAt: { type: Date }
-
-        // content: {type: String},
-        // username: {type: String},
-        // image: {type: String},
-        // createdAt: { type: Date }
+        username: { type: String },
+        image: { type: String },
+        content: { type: String },
+        createdAt: { type: Date,  
+            default:new Date()
+        }
     }]
 });
 

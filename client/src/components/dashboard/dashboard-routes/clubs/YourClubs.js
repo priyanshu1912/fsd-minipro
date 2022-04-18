@@ -31,10 +31,10 @@ function YourClubs(props) {
     }
 
     const getClubs = () => {
-        axios.get(`http://localhost:5000/user/${userInfo.userType.toLowerCase()}/${userInfo.username}`)
+        axios.get(`http://localhost:5000/club/625b92486da781650ed10b1a`)
         .then(res=>{
-            console.log(res)
-          setClubs(res.data.clubs)
+            console.log(res.data)
+          //setClubs(res.data.clubs)
         })
         .catch(err=>{
           console.log(err)
@@ -67,6 +67,7 @@ function YourClubs(props) {
                                 <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img'
                                 className='your-club-image'/>
                                 <div>
+                                    <div className='your-club-faculty'>faculty - {item.faculty}</div>
                                     <div className='your-club-name' onClick={()=>openProjectModal(item)}>{item.name}</div>
                                     <div className='your-club-desc'>
                                         {item.description}

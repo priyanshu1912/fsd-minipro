@@ -10,6 +10,7 @@ function DashboardNav(props) {
   const userData = props.userData
 
   const [user,setUser] = useState(null)
+  console.log({user})
 
   useEffect(()=>{
     axios.get(`http://localhost:5000/user/${userData.userType.toLowerCase()}/${userData.username}`)

@@ -69,7 +69,7 @@ const studentSchema = new mongoose.Schema({
         students: { type: [String] },
         posts: [{
             username: { type: String },
-            profilePhotot: { type: String },
+            profilePhoto: { type: String },
             content: { type: String },
             createdAt: { type: Date }
         }]

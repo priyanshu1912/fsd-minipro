@@ -85,9 +85,8 @@ app.post("/:studentId/join/:clubId",async function(req,res){
           description: club[0].description,
           department: club[0].department,
           students: club[0].students,
-          posts:club[0].posts
+          posts: club[0].posts
         }
-
         // find club and add studentID in array
         await clubModel.update(
           { _id: clubId }, 
@@ -121,12 +120,13 @@ app.post("/:studentId/leave/:clubId",async function(req,res){
       if(club){
 
         const club1={
+          id: club[0]._id,
           name: club[0].name,
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
           students: club[0].students,
-          posts:club[0].posts
+          posts: club[0].posts,
         }
 
         // find club and remove studentID from array
@@ -156,13 +156,10 @@ app.post("/:clubId/createPost",async function(req,res){
     
   const clubId=req.params.clubId; 
   const newPost= new postModel({
-    title: req.body.title,
-    description: req.body.description,
-    tags: req.body.tags
 
-    // username: req.body.username,
-    // profileImage: req.body.image,
-    // content: req.body.content
+    username: req.body.username,
+    image: req.body.image,
+    content: req.body.content,
   });
 
   newPost.save(function(err){
@@ -171,22 +168,17 @@ app.post("/:clubId/createPost",async function(req,res){
   });
 
   const post1={
-    title: newPost.title,
-    description: newPost.description,
-
-    // username: req.body.username,
-    // profileImage: req.body.image,
-    // content: req.body.content,
-
-    createdAt: newPost.createdAt
+    username: req.body.username,
+    image: req.body.image,
+    content: req.body.content,
   }
 
   // find club and add new post in array
   await clubModel.update(
-    { _id: clubId }, 
+    { _id: clubId },  
     { $push: { posts: post1 } }
   );
-  res.status(201).json(newPost);
+  
   res.json({ message: 'post created successfully' ,status:200});
 });
 
@@ -206,6 +198,29 @@ app.get("/:clubId/post",async function(req,res){
       }
       else{
         console.log("clubs not found");
+
+      }
+    } 
+  });
+
+});
+
+
+app.get("/:studentId",async function(req,res){
+    
+  const studentId=req.params.studentId;
+
+  studentModel.find({studentId},function(err,student){
+    if(!err)
+    {
+      if(student){
+        console.log(student);
+
+        res.json(student);
+        // res.send(JSON.stringify(clubs));
+      }
+      else{
+        console.log("student not found");
 
       }
     } 
