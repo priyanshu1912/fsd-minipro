@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.patch('/:type/:username/bio', updateBio);
 router.patch('/:type/:username/url/:attr', updateURL);
-router.patch('/:type/:username/:attr/', updateProfileItem);
+router.patch('/:type/:username/:attr/:id', updateProfileItem);
 router.delete('/:type/:username/:attr/', deleteProfileItem);
 
 export default router;
