@@ -110,34 +110,57 @@ app.post("/:studentId/leave/:clubId", async function (req, res) {
   const clubId = req.params.clubId;
   const studentId = req.params.studentId;
 
-  const club1 = {
-    id: club[0]._id,
-    name: club[0].name,
-    faculty: club[0].faculty,
-    description: club[0].description,
-    department: club[0].department,
-    students: club[0].students,
-    posts: club[0].posts,
-  }
+  clubModel.find({ clubId }, async function (err, club) {
+    if (!err) {
+      if (club) {
 
-  // find club and remove studentID from array
-  await clubModel.update(
-    { _id: clubId },
-    { $pull: { students: studentId } }
+        const club1 = {
+          name: club[0].name,
+          faculty: club[0].faculty,
+          description: club[0].description,
+          department: club[0].department,
+          students: club[0].students,
+          posts: club[0].posts
+        }
+          // find club and remove studentID from array
+        await clubModel.update(
+          { _id: clubId },
+          { $pull: { students: studentId } }
 
-  );
-  // find student and remove clubID from array
-  await studentModel.update(
-    { _id: studentId },
-    { $pull: { clubs: club1 } }
-  );
-  res.json({ message: 'club left successfully' });
+        );
+        // find student and remove clubID from array
+        await studentModel.update(
+          { _id: studentId },
+          { $pull: { clubs: club1 } }
+        );
+        res.json({ message: 'club left successfully' });
+              // res.send(JSON.stringify(clubs));
+      }
+      else {
+        console.log("clubs not found");
+
+      }
+    }
+  });
+
+
+  // const club1 = {
+  //   id: club[0]._id,
+  //   name: club[0].name,
+  //   faculty: club[0].faculty,
+  //   description: club[0].description,
+  //   department: club[0].department,
+  //   students: club[0].students,
+  //   posts: club[0].posts,
   // }
-  //     else {
-  //       console.log("clubs not found");
-  //     }
-  //   }
-  // });
+
+
+  // // }
+  // //     else {
+  // //       console.log("clubs not found");
+  // //     }
+  // //   }
+  // // });
 });
 
 app.post("/:clubId/createPost", async function (req, res) {
