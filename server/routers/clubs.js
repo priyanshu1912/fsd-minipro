@@ -4,49 +4,48 @@ import clubModel from "../models/clubModel.js";
 import studentModel from "../models/studentModel.js";
 import postModel from "../models/postModel.js";
 
-const app=express();
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/",function(req,res){
-  
-  clubModel.find({},function(err,clubs){
-      if(!err)
-      {
-        if(clubs){
-          res.json(clubs);
-          // res.send(JSON.stringify(clubs));
-        }
-        else{
-          console.log("clubs not found");
-  
-        }
-      } 
-    });
+app.get("/", function (req, res) {
+
+  clubModel.find({}, function (err, clubs) {
+    if (!err) {
+      if (clubs) {
+        res.json(clubs);
+        // res.send(JSON.stringify(clubs));
+      }
+      else {
+        console.log("clubs not found");
+
+      }
+    }
   });
-  
-app.post("/create",function(req,res){
-    
-    const club = req.body;
-    const newClub = new clubModel(club);
-    try {
-         newClub.save();
-        res.status(201).json(newClub);
-    }
-    catch (error) {
-        const errors = handleErrors(error);
-        res.status(400).json(errors);
-    }
+});
+
+app.post("/create", function (req, res) {
+
+  const club = req.body;
+  const newClub = new clubModel(club);
+  try {
+    newClub.save();
+    res.status(201).json(newClub);
+  }
+  catch (error) {
+    const errors = handleErrors(error);
+    res.status(400).json(errors);
+  }
 
 });
 
-app.post("/:id/update",async function(req,res){
+app.post("/:id/update", async function (req, res) {
 
-  const clubId=req.params.id;
+  const clubId = req.params.id;
   const club = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(clubId))
-      return res.status(404).send('No club with that ID!');
+    return res.status(404).send('No club with that ID!');
 
   const updatedClub = await clubModel.findById(clubId, { ...club, clubId }, { new: true });
 
@@ -55,12 +54,12 @@ app.post("/:id/update",async function(req,res){
 });
 
 
-app.post("/:id/delete",function(req,res){
-    
-  const clubId=req.params.id;
+app.post("/:id/delete", function (req, res) {
 
-  clubModel.findByIdAndRemove(clubId,function(err){
-    if(!err){
+  const clubId = req.params.id;
+
+  clubModel.findByIdAndRemove(clubId, function (err) {
+    if (!err) {
       console.log("Successfully deleted the club.");
     }
   });
@@ -68,90 +67,100 @@ app.post("/:id/delete",function(req,res){
 });
 
 
-app.post("/:studentId/join/:clubId",async function(req,res){
-    
-  const clubId=req.params.clubId;
-  const studentId=req.params.studentId;
+app.post("/:studentId/join/:clubId", async function (req, res) {
 
-  clubModel.find({clubId},async function(err,club){
-    if(!err)
-    {
-      if(club){
+  const clubId = req.params.clubId;
+  const studentId = req.params.studentId;
 
-        const club1={
-          id: club[0]._id,
+  clubModel.find({ clubId }, async function (err, club) {
+    if (!err) {
+      if (club) {
+
+        const club1 = {
           name: club[0].name,
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
+<<<<<<< HEAD
           students: club[0].students,
           posts: club[0].posts
+=======
+          students: club[0].students
+>>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
         }
         // find club and add studentID in array
         await clubModel.update(
-          { _id: clubId }, 
+          { _id: clubId },
           { $push: { students: studentId } }
-          
+
         );
         // find student and add clubID in array
         await studentModel.update(
-          { _id: studentId }, 
+          { _id: studentId },
           { $push: { clubs: club1 } }
         );
         res.json({ message: 'club joined successfully' });
         // res.send(JSON.stringify(clubs));
       }
-      else{
+      else {
         console.log("clubs not found");
 
       }
-    } 
+    }
   });
 });
 
-app.post("/:studentId/leave/:clubId",async function(req,res){
-    
-  const clubId=req.params.clubId;
-  const studentId=req.params.studentId;
+app.post("/:studentId/leave/:clubId", async function (req, res) {
 
-  clubModel.find({clubId},async function(err,club){
-    if(!err)
-    {
-      if(club){
+  const clubId = req.params.clubId;
+  const studentId = req.params.studentId;
 
+<<<<<<< HEAD
         const club1={
           id: club[0]._id,
+=======
+  clubModel.find({ clubId }, async function (err, club) {
+    if (!err) {
+      if (club) {
+
+        const club1 = {
+>>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
           name: club[0].name,
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
+<<<<<<< HEAD
           students: club[0].students,
           posts: club[0].posts,
+=======
+          students: club[0].students
+>>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
         }
 
         // find club and remove studentID from array
         await clubModel.update(
-          { _id: clubId }, 
+          { _id: clubId },
           { $pull: { students: studentId } }
-          
+
         );
         // find student and remove clubID from array
         await studentModel.update(
-          { _id: studentId }, 
+          { _id: studentId },
           { $pull: { clubs: club1 } }
         );
         res.json({ message: 'club left successfully' });
       }
-      else{
+      else {
         console.log("clubs not found");
       }
-    } 
+    }
   });
-  
+
 });
 
-app.post("/:clubId/createPost",async function(req,res){
+app.post("/:clubId/createPost", async function (req, res) {
 
+<<<<<<< HEAD
   console.log(req.body)
     
   const clubId=req.params.clubId; 
@@ -160,47 +169,65 @@ app.post("/:clubId/createPost",async function(req,res){
     username: req.body.username,
     image: req.body.image,
     content: req.body.content,
+=======
+  const clubId = req.params.clubId;
+  const newPost = new postModel({
+    title: req.body.title,
+    description: req.body.description,
+    // creator: req.params.id,
+    tags: req.body.tags
+>>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
   });
 
-  newPost.save(function(err){
-    if(err)
+  newPost.save(function (err) {
+    if (err)
       console.log(err);
   });
 
+<<<<<<< HEAD
   const post1={
     username: req.body.username,
     image: req.body.image,
     content: req.body.content,
+=======
+  const post1 = {
+    title: newPost.title,
+    description: newPost.description,
+    createdAt: newPost.createdAt
+>>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
   }
 
   // find club and add new post in array
   await clubModel.update(
+<<<<<<< HEAD
     { _id: clubId },  
+=======
+    { _id: clubId },
+>>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
     { $push: { posts: post1 } }
   );
   
   res.json({ message: 'post created successfully' ,status:200});
 });
 
-app.get("/:clubId/post",async function(req,res){
-    
-  const clubId=req.params.clubId;
+app.get("/:clubId/post", async function (req, res) {
 
-  clubModel.find({clubId},function(err,clubs){
-    if(!err)
-    {
-      if(clubs){
+  const clubId = req.params.clubId;
 
-        res.json(clubs[0].posts.sort(function(a,b){
+  clubModel.find({ clubId }, function (err, clubs) {
+    if (!err) {
+      if (clubs) {
+
+        res.json(clubs[0].posts.sort(function (a, b) {
           return new Date(b.date) - new Date(a.date);
         }));
         // res.send(JSON.stringify(clubs));
       }
-      else{
+      else {
         console.log("clubs not found");
 
       }
-    } 
+    }
   });
 
 });
