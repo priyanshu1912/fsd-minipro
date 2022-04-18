@@ -79,11 +79,13 @@ app.post("/:studentId/join/:clubId",async function(req,res){
       if(club){
 
         const club1={
+          id: club[0]._id,
           name: club[0].name,
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
-          students: club[0].students
+          students: club[0].students,
+          posts:club[0].posts
         }
 
         // find club and add studentID in array
@@ -123,7 +125,8 @@ app.post("/:studentId/leave/:clubId",async function(req,res){
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
-          students: club[0].students
+          students: club[0].students,
+          posts:club[0].posts
         }
 
         // find club and remove studentID from array
