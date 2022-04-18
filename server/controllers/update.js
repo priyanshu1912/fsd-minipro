@@ -98,10 +98,10 @@ export const deleteProfileItem = async (req, res) => {
     }
 
     if (type === "student") {
-        var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $pull: { [field]: {oldDoc} } }, { new: true });
+        var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $pull: { [field]: { _id: id } } }, { new: true });
     }
     else {
-        var updatedProfile = await FacultyModel.findOneAndUpdate({ username }, { $pull: { [field]: {oldDoc} } }, { new: true });
+        var updatedProfile = await FacultyModel.findOneAndUpdate({ username }, { $pull: { [field]: { _id: id } } }, { new: true });
     }
 
     if (updatedProfile === null) {
