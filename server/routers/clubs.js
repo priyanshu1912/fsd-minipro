@@ -81,12 +81,8 @@ app.post("/:studentId/join/:clubId", async function (req, res) {
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
-<<<<<<< HEAD
           students: club[0].students,
           posts: club[0].posts
-=======
-          students: club[0].students
->>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
         }
         // find club and add studentID in array
         await clubModel.update(
@@ -115,26 +111,14 @@ app.post("/:studentId/leave/:clubId", async function (req, res) {
   const clubId = req.params.clubId;
   const studentId = req.params.studentId;
 
-<<<<<<< HEAD
         const club1={
           id: club[0]._id,
-=======
-  clubModel.find({ clubId }, async function (err, club) {
-    if (!err) {
-      if (club) {
-
-        const club1 = {
->>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
           name: club[0].name,
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
-<<<<<<< HEAD
           students: club[0].students,
           posts: club[0].posts,
-=======
-          students: club[0].students
->>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
         }
 
         // find club and remove studentID from array
@@ -160,7 +144,6 @@ app.post("/:studentId/leave/:clubId", async function (req, res) {
 
 app.post("/:clubId/createPost", async function (req, res) {
 
-<<<<<<< HEAD
   console.log(req.body)
     
   const clubId=req.params.clubId; 
@@ -169,14 +152,6 @@ app.post("/:clubId/createPost", async function (req, res) {
     username: req.body.username,
     image: req.body.image,
     content: req.body.content,
-=======
-  const clubId = req.params.clubId;
-  const newPost = new postModel({
-    title: req.body.title,
-    description: req.body.description,
-    // creator: req.params.id,
-    tags: req.body.tags
->>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
   });
 
   newPost.save(function (err) {
@@ -184,26 +159,15 @@ app.post("/:clubId/createPost", async function (req, res) {
       console.log(err);
   });
 
-<<<<<<< HEAD
   const post1={
     username: req.body.username,
     image: req.body.image,
     content: req.body.content,
-=======
-  const post1 = {
-    title: newPost.title,
-    description: newPost.description,
-    createdAt: newPost.createdAt
->>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
   }
 
   // find club and add new post in array
   await clubModel.update(
-<<<<<<< HEAD
     { _id: clubId },  
-=======
-    { _id: clubId },
->>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
     { $push: { posts: post1 } }
   );
   
