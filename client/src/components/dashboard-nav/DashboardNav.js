@@ -17,6 +17,9 @@ function DashboardNav(props) {
     .then(res=>{
       setUser(res.data)
       setUserInfo(res.data)
+      sessionStorage.setItem('userType',res.data.userType)
+      sessionStorage.setItem('username',res.data.username)
+      sessionStorage.setItem('profilePhoto',res.data.profilePhoto)
     })
     .catch(err=>{
       console.log(err)

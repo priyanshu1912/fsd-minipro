@@ -85,8 +85,10 @@ export const deleteProfileItem = async (req, res) => {
     const attr = req.params['attr'];
     const id = req.body.id;
 
+    console.log(req.body)
+
     if (attr === "projects") {
-        var field = "currentProjects";
+        var field = "currentProjects"; 
     }
     else if (attr === "publications") {
         var field = "publications";
@@ -96,17 +98,10 @@ export const deleteProfileItem = async (req, res) => {
     }
 
     if (type === "student") {
-<<<<<<< HEAD
         var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $pull: { [field]: {oldDoc} } }, { new: true });
     }
     else {
         var updatedProfile = await FacultyModel.findOneAndUpdate({ username }, { $pull: { [field]: {oldDoc} } }, { new: true });
-=======
-        var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $pull: { [field]: { _id: id } } }, { new: true });
-    }
-    else {
-        var updatedProfile = await FacultyModel.findOneAndUpdate({ username }, { $pull: { [field]: { _id: id } } }, { new: true });
->>>>>>> abee7bad02aaa690a583e534b6b5ee2debbb8216
     }
 
     if (updatedProfile === null) {
@@ -114,5 +109,5 @@ export const deleteProfileItem = async (req, res) => {
     }
     else {
         res.status(200).json(updatedProfile);
-    }
+    } 
 }

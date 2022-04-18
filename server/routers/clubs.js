@@ -128,19 +128,14 @@ app.post("/:studentId/leave/:clubId", async function (req, res) {
 
         );
         // find student and remove clubID from array
-        await studentModel.update(
+        await studentModel.update( 
           { _id: studentId },
           { $pull: { clubs: club1 } }
         );
+        
         res.json({ message: 'club left successfully' });
-      }
-      else {
-        console.log("clubs not found");
-      }
-    }
   });
 
-});
 
 app.post("/:clubId/createPost", async function (req, res) {
 
@@ -174,6 +169,7 @@ app.post("/:clubId/createPost", async function (req, res) {
   res.json({ message: 'post created successfully' ,status:200});
 });
 
+
 app.get("/:clubId/post", async function (req, res) {
 
   const clubId = req.params.clubId;
@@ -195,6 +191,7 @@ app.get("/:clubId/post", async function (req, res) {
   });
 
 });
+
 
 
 app.get("/:studentId",async function(req,res){

@@ -10,20 +10,20 @@ function YourClubs(props) {
     const [userInfo,setUserInfo] = useStore('user')
 
     const [clubs,setClubs] = useState(null)
-    console.log(clubs)
+    console.log({clubs})
 
     const {post,setPost} = props
 
     const [open,setOpen] = useState({
         value: false,
-        data: null
+        data: null 
     })
 
-    const removeClub = (id) => {
+    const leaveClub = (id) => {
         axios.post(`http://localhost:5000/club/${userInfo._id}/leave/${id}`)
         .then(res=>{
             console.log(res)
-            getClubs()
+            //getClubs()
         })
         .catch(err=>{
             console.log(err)
@@ -31,10 +31,11 @@ function YourClubs(props) {
     }
 
     const getClubs = () => {
-        axios.get(`http://localhost:5000/club/625b92486da781650ed10b1a`)
+        axios.get('http://localhost:5000/club')
         .then(res=>{
-            console.log(res.data)
-          //setClubs(res.data.clubs)
+            const data = res.data
+            //console.log({data})
+            setClubs(data.filter(item => item.students.includes('625b973da035c0ba0404b9b4')))
         })
         .catch(err=>{
           console.log(err)
@@ -75,7 +76,7 @@ function YourClubs(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div onClick={()=>removeClub(item._id)} className='remove-club'>exit club</div>
+                            <div onClick={()=>leaveClub(item._id)} className='remove-club'>exit club</div>
                         </div>
                     )
                 })

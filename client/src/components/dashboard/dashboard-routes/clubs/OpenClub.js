@@ -14,23 +14,26 @@ function OpenClub(props) {
 
     const [postData,setPostData] = useState({
         content:'',
-        username: userInfo.username,
-        image: userInfo.profilePhoto
+        username: sessionStorage.getItem('username'),
+        image: sessionStorage.getItem('profilePhoto')
     })
     const [loading,setLoading] = useState(false)
 
     const post = (id) => {
-        setLoading(true)
+        //setLoading(true)
+
+        // console.log(id)
+        // console.log(postData)
         axios.post(`http://localhost:5000/club/${id}/createPost`,postData)
         .then(res=>{
-            console.log(res)
-            if(res.data.status===200){
-                setLoading(false)
-                setOpen({
-                    ...open,
-                    value: false
-                })
-            }
+            console.log(res.data)
+            // if(res.data.status===200){
+            //     //setLoading(false)
+            //     setOpen({
+            //         ...open,
+            //         value: false
+            //     })
+            // }
         })
         .catch(err=>{
             console.log(err)
