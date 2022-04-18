@@ -121,7 +121,7 @@ app.post("/:studentId/leave/:clubId", async function (req, res) {
   }
 
   // find club and remove studentID from array
-  await clubModel.update(
+  await clubModel.update( 
     { _id: clubId },
     { $pull: { students: studentId } }
 

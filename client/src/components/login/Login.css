@@ -9,7 +9,7 @@
 .login-form {
     position: absolute;
     width: 25%;
-    padding: 4vh 3vw;
+    padding: 4vh 3vw; 
     border-radius: 15px;
     background-color: white;
     box-shadow: 2px 0 10px rgb(230, 230, 230);

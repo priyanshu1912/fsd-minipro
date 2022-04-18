@@ -38,14 +38,14 @@ function ExploreClubs() {
                     return (
                         <div className='your-club'>
                             <div style={{display:'flex',alignItems:'center',width:'80%'}}>
-                                <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img'
+                                <img src='https://secureservercdn.net/198.71.233.1/fc7.e85.myftpupload.com/wp-content/uploads/2019/01/color-swatch-multicolored-1536x1536.png' alt='grp-img'
                                 className='your-club-image'/>
                                 <div>
                                     <div className='your-club-faculty'>Faculty - {item.faculty}</div>
                                     <div className='your-club-name'>{item.name}</div>
                                     <div className='your-club-desc'>
                                         {item.description}
-                                        <div>{item.students.length} students enrolled</div>
+                                        <div className='your-club-members'>{item.students.length} students enrolled</div>
                                     </div>
                                 </div>
                             </div>

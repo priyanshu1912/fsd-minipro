@@ -45,7 +45,9 @@ function Profile(props) {
 
 
     const deleteItem = (item) => {
-        axios.delete(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`)
+        const itemjson = JSON.stringify({id: item})
+        console.log({id: item})
+        axios.delete(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`, itemjson)
         .then(res=>{
             console.log(res.data)
             getUser()
@@ -158,7 +160,7 @@ function Profile(props) {
                                             </div>
                                         </div>
                                         <div style={{display:'flex',flexDirection:'column'}}>
-                                            <AiFillDelete onClick={()=>deleteItem(item)} className='project-del'/>
+                                            <AiFillDelete onClick={()=>deleteItem(item._id)} className='project-del'/>
                                             <AiFillEdit onClick={()=>updateItem(item)} className='project-edit'/>
                                         </div>
                                     </div>

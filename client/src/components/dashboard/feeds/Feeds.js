@@ -1,189 +1,75 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './Feeds.css'
 import {AiFillHeart} from 'react-icons/ai'
+import axios from 'axios'
 
 function Feeds() {
+  const [feeds,setFeeds] = useState(null)
+  console.log({feeds})
+
+  const getData = () => {
+    axios.get('http://localhost:5000/club')
+    .then(res=>{
+        const data = res.data
+        const userClubs = data.filter(item => item.students.includes('625b973da035c0ba0404b9b4'))
+        let feed = []
+        userClubs.forEach(item => {
+          const club = item.posts
+          club.forEach(item => feed.push(item))
+        });
+        setFeeds(feed)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+}
+
+useEffect(()=>{
+    getData()
+},[])
+
   return (
     <>
-    <div className='feed-container'>
+    {
+      feeds && feeds.length !== 0 &&
+      <>
+      {
+        feeds.map(item => {
+          return (
+            <div className='feed-container'>
         <div className='feed-info'>
             <div style={{display:'flex',alignItems:'center'}}>
-              <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" 
-              className='feed-image'/>
+              <img src={item.image} className='feed-image'/>
               <div className='feed-name'>
-                <div>Priyanshu</div>
-                <div className='feed-time'>3:45 PM</div>
+                <div>{item.username}</div>
+                <div className='feed-time'>{item.createdAt.slice(0,item.createdAt.indexOf('T'))}</div>
               </div>
             </div>
             <div></div>
         </div>
 
         <div className='feed-content'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum itaque modi quae nobis ratione repudiandae. Commodi non adipisci officiis vel!
+          {item.content}
         </div>
 
-        <div className='feed-options'>
+        {/* <div className='feed-options'>
           <div className='feed-buttons'>
             <AiFillHeart className='feed-like'/> 21
           </div>
-          {/* <div className='feed-buttons'>
+          <div className='feed-buttons'>
             <AiFillHeart className='feed-like'/> 21
           </div>
           <div className='feed-buttons'>
             <AiFillHeart className='feed-like'/> 21
-          </div> */}
-        </div>
+          </div>
+        </div> */}
+        
     </div>
-
-    <div className='feed-container'>
-        <div className='feed-info'>
-            <div style={{display:'flex',alignItems:'center'}}>
-              <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" 
-              className='feed-image'/>
-              <div className='feed-name'>
-                <div>Priyanshu</div>
-                <div className='feed-time'>3:45 PM</div>
-              </div>
-            </div>
-            <div></div>
-        </div>
-
-        <div className='feed-content'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum itaque modi quae nobis ratione repudiandae. Commodi non adipisci officiis vel!
-        </div>
-
-        <div className='feed-options'>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          {/* <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div> */}
-        </div>
-    </div>
-
-    <div className='feed-container'>
-        <div className='feed-info'>
-            <div style={{display:'flex',alignItems:'center'}}>
-              <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" 
-              className='feed-image'/>
-              <div className='feed-name'>
-                <div>Priyanshu</div>
-                <div className='feed-time'>3:45 PM</div>
-              </div>
-            </div>
-            <div></div>
-        </div>
-
-        <div className='feed-content'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum itaque modi quae nobis ratione repudiandae. Commodi non adipisci officiis vel!
-        </div>
-
-        <div className='feed-options'>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          {/* <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div> */}
-        </div>
-    </div>
-
-    <div className='feed-container'>
-        <div className='feed-info'>
-            <div style={{display:'flex',alignItems:'center'}}>
-              <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" 
-              className='feed-image'/>
-              <div className='feed-name'>
-                <div>Priyanshu</div>
-                <div className='feed-time'>3:45 PM</div>
-              </div>
-            </div>
-            <div></div>
-        </div>
-
-        <div className='feed-content'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum itaque modi quae nobis ratione repudiandae. Commodi non adipisci officiis vel!
-        </div>
-
-        <div className='feed-options'>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          {/* <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div> */}
-        </div>
-    </div>
-
-    <div className='feed-container'>
-        <div className='feed-info'>
-            <div style={{display:'flex',alignItems:'center'}}>
-              <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" 
-              className='feed-image'/>
-              <div className='feed-name'>
-                <div>Priyanshu</div>
-                <div className='feed-time'>3:45 PM</div>
-              </div>
-            </div>
-            <div></div>
-        </div>
-
-        <div className='feed-content'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum itaque modi quae nobis ratione repudiandae. Commodi non adipisci officiis vel!
-        </div>
-
-        <div className='feed-options'>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          {/* <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div> */}
-        </div>
-    </div>
-
-    <div className='feed-container'>
-        <div className='feed-info'>
-            <div style={{display:'flex',alignItems:'center'}}>
-              <img src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png" 
-              className='feed-image'/>
-              <div className='feed-name'>
-                <div>Priyanshu</div>
-                <div className='feed-time'>3:45 PM</div>
-              </div>
-            </div>
-            <div></div>
-        </div>
-
-        <div className='feed-content'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum itaque modi quae nobis ratione repudiandae. Commodi non adipisci officiis vel!
-        </div>
-
-        <div className='feed-options'>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          {/* <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div>
-          <div className='feed-buttons'>
-            <AiFillHeart className='feed-like'/> 21
-          </div> */}
-        </div>
-    </div>
+          )
+        })
+      }
+      </>
+    }
     </>
   )
 }
