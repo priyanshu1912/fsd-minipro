@@ -3,12 +3,13 @@ import React,{useState,useEffect} from 'react'
 import Feeds from '../../feeds/Feeds'
 import './Overview.css'
 
+
 function Overview(props) {
   const [recommendedPeople,setRecommendedPeople] = useState(null)
   const [recommendedClub,setRecommendedClub] = useState(null)
   const {userData} = props
 
-  console.log(recommendedClub)
+  console.log(recommendedPeople)
 
   useEffect(()=>{
     axios.post(`http://localhost:5000/recommend/${userData.userType.toLowerCase()}/${userData.username}`)
@@ -40,6 +41,11 @@ function Overview(props) {
     //   console.log(err)
     // })
   },[])
+
+
+  const viewProfile = (id) => {
+
+  }
 
   return (
     <div className='overview'>
@@ -90,7 +96,7 @@ function Overview(props) {
                         <img src={item.profilePhoto} className='people-image'/>
                         <div className='people-name'>{item.name}</div>
                       </div>
-                      <div className='connect'>connect</div>
+                      <div onClick={()=>viewProfile(item._id)} className='connect'>view</div>
                     </div>
                   )
                 })

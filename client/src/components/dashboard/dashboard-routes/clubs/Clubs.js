@@ -20,7 +20,7 @@ function Clubs() {
             {
               tab==='your' &&
               <YourClubs post={post} setPost={setPost}/>
-            }
+            } 
             {
               tab==='explore' &&
               <ExploreClubs post={post} setPost={setPost}/>

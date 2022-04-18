@@ -21,9 +21,9 @@ function OpenClub(props) {
 
     console.log({postData})
 
-    const post = () => {
+    const post = (id) => {
         // setLoading(true)
-        axios.post(`http://localhost:5000/club/625c257778b833f2abe2d45f/createPost`,postData)
+        axios.post(`http://localhost:5000/club/${id}/createPost`,postData)
         .then(res=>{
             console.log(res)
         })
@@ -38,14 +38,14 @@ function OpenClub(props) {
                 <div style={{textAlign:'right'}}>
                     <IoIosClose style={{cursor:'pointer',fontSize:'25px'}} onClick={()=>setOpen({...open,value:false})}/>
                 </div>
-                <div className='openclub-name'>club name</div>
+                <div className='openclub-name'>{open.data.name}</div>
                 <textarea placeholder='Type your message' className='openclub-textarea' rows={4} onChange={e=>setPostData({...postData,content:e.target.value})} />
                 <div style={{textAlign:'right'}}>
                     {
                         loading ?
                         <PulseLoader color='#2196f3' size={5}/>
                         :
-                        <IoSend onClick={post} className='send-button'/>
+                        <IoSend onClick={()=>post(open.data._id)} className='send-button'/>
                     }
                 </div>
             </div>

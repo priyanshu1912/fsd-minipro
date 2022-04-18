@@ -20,19 +20,20 @@ function YourClubs(props) {
     })
 
     const removeClub = (id) => {
-        axios.post(`http://localhost:5000/club/${userInfo._id}/leave/${id}`)
-        .then(res=>{
-            console.log(res)
-            getClubs()
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+        // axios.post(`http://localhost:5000/club/${userInfo._id}/leave/${id}`)
+        // .then(res=>{
+        //     console.log(res)
+        //     getClubs()
+        // })
+        // .catch(err=>{
+        //     console.log(err)
+        // })
     }
 
     const getClubs = () => {
         axios.get(`http://localhost:5000/user/${userInfo.userType.toLowerCase()}/${userInfo.username}`)
         .then(res=>{
+            console.log(res)
           setClubs(res.data.clubs)
         })
         .catch(err=>{
@@ -61,19 +62,19 @@ function YourClubs(props) {
             {
                 clubs.map(item => {
                     return (
-                        <div className='your-club' onClick={()=>openProjectModal()}>
+                        <div className='your-club'>
                             <div style={{display:'flex',alignItems:'center'}}>
                                 <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img'
                                 className='your-club-image'/>
                                 <div>
-                                    <div className='your-club-name'>Club name</div>
+                                    <div className='your-club-name' onClick={()=>openProjectModal(item)}>{item.name}</div>
                                     <div className='your-club-desc'>
-                                        Lorem ipsum dolor sit amet.
-                                        <div>120 members</div>
+                                        {item.description}
+                                        <div>{item.students.length} students enrolled</div>
                                     </div>
                                 </div>
                             </div>
-                            <div onClick={()=>removeClub(item)} className='remove-club'>exit club</div>
+                            <div onClick={()=>removeClub(item._id)} className='remove-club'>exit club</div>
                         </div>
                     )
                 })

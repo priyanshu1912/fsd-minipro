@@ -9,4 +9,4 @@ router.post('/:type/:username', recommendPeople);
 //http://localhost:5000/recommend/club/
 router.post('/club/', recommendClubs);
 
-export default router; 
+export default router;  
