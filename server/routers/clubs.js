@@ -107,47 +107,45 @@ app.post("/:studentId/join/:clubId", async function (req, res) {
 });
 
 app.post("/:studentId/leave/:clubId", async function (req, res) {
-
   const clubId = req.params.clubId;
   const studentId = req.params.studentId;
 
-        const club1={
-          id: club[0]._id,
-          name: club[0].name,
-          faculty: club[0].faculty,
-          description: club[0].description,
-          department: club[0].department,
-          students: club[0].students,
-          posts: club[0].posts,
-        }
+  const club1 = {
+    id: club[0]._id,
+    name: club[0].name,
+    faculty: club[0].faculty,
+    description: club[0].description,
+    department: club[0].department,
+    students: club[0].students,
+    posts: club[0].posts,
+  }
 
-        // find club and remove studentID from array
-        await clubModel.update(
-          { _id: clubId },
-          { $pull: { students: studentId } }
+  // find club and remove studentID from array
+  await clubModel.update(
+    { _id: clubId },
+    { $pull: { students: studentId } }
 
-        );
-        // find student and remove clubID from array
-        await studentModel.update(
-          { _id: studentId },
-          { $pull: { clubs: club1 } }
-        );
-        res.json({ message: 'club left successfully' });
-      }
-      else {
-        console.log("clubs not found");
-      }
-    }
-  });
-
+  );
+  // find student and remove clubID from array
+  await studentModel.update(
+    { _id: studentId },
+    { $pull: { clubs: club1 } }
+  );
+  res.json({ message: 'club left successfully' });
+  // }
+  //     else {
+  //       console.log("clubs not found");
+  //     }
+  //   }
+  // });
 });
 
 app.post("/:clubId/createPost", async function (req, res) {
 
   console.log(req.body)
-    
-  const clubId=req.params.clubId; 
-  const newPost= new postModel({
+
+  const clubId = req.params.clubId;
+  const newPost = new postModel({
 
     username: req.body.username,
     image: req.body.image,
@@ -159,7 +157,7 @@ app.post("/:clubId/createPost", async function (req, res) {
       console.log(err);
   });
 
-  const post1={
+  const post1 = {
     username: req.body.username,
     image: req.body.image,
     content: req.body.content,
@@ -167,11 +165,11 @@ app.post("/:clubId/createPost", async function (req, res) {
 
   // find club and add new post in array
   await clubModel.update(
-    { _id: clubId },  
+    { _id: clubId },
     { $push: { posts: post1 } }
   );
-  
-  res.json({ message: 'post created successfully' ,status:200});
+
+  res.json({ message: 'post created successfully', status: 200 });
 });
 
 app.get("/:clubId/post", async function (req, res) {
@@ -197,24 +195,23 @@ app.get("/:clubId/post", async function (req, res) {
 });
 
 
-app.get("/:studentId",async function(req,res){
-    
-  const studentId=req.params.studentId;
+app.get("/:studentId", async function (req, res) {
 
-  studentModel.find({studentId},function(err,student){
-    if(!err)
-    {
-      if(student){
+  const studentId = req.params.studentId;
+
+  studentModel.find({ studentId }, function (err, student) {
+    if (!err) {
+      if (student) {
         console.log(student);
 
         res.json(student);
         // res.send(JSON.stringify(clubs));
       }
-      else{
+      else {
         console.log("student not found");
 
       }
-    } 
+    }
   });
 
 });
