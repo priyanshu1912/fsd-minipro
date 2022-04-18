@@ -10,8 +10,8 @@
 .join-club {
     font-size: 2.2vh;
     color: #2196f3;
-    border: 1px solid #2196f3;
-    padding: 0.1vh 0.5vw;
+    background-color: #e3f2fd;
+    padding: 0.5vh 0.5vw;
     border-radius: 15px;
     font-size: 2vh;
     cursor: pointer;
@@ -19,7 +19,6 @@
 .join-club:hover {
     background-color: #2196f3;
     color: white;
-    border: 1px solid #2196f3;
 }
 
 .your-club-faculty {

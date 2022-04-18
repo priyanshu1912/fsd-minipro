@@ -41,7 +41,7 @@ function Projects() {
                         return (
                             <div className='project'>
                                 <div className='project-image-container'>
-                                    <img src="https://cdn.onlinewebfonts.com/svg/img_44448.png" className='project-image'/>
+                                    <img src="https://wallpapercave.com/wp/wp2860503.jpg" className='project-image'/>
                                     <div className='project-time'>{item.createdAt.slice(0,item.createdAt.indexOf('T'))}</div>
                                 </div>
                                 <div>

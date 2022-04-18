@@ -2,32 +2,44 @@ import React,{useEffect} from 'react'
 import './Landing.css'
 import Nav from '../navbar/Nav'
 import {useLocation,useNavigate} from 'react-router-dom'
+import Slider from "react-slick";
+import Carousel from './Carousel'
 
 function Landing() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        if(location.pathname.match('/')){
-            navigate('/login')
-        }
-    },[])
+    // useEffect(()=>{
+    //     if(location.pathname.match('/')){
+    //         navigate('/login')
+    //     }
+    // },[])
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 2000,
+        cssEase: "linear"
+      };
 
   return (
     <>
         <Nav/>
         <div className='landing'>
             <div className='landing-banner'>
-                <div className='banner-heading'>HEADING HERE</div>
-                <div className='banner-subheading'>sub heading here</div>
+                <div className='banner-heading'>Our Solution</div>
+                <div className='banner-subheading'>A web application which provides the following functionalities.</div>
             </div>
             <div className='landing-illustration'>
-                <img src="https://www.44communications.co.uk/wp-content/uploads/2020/12/30_Corin_companies-collaborating_1060x600.jpg"
-                alt="illustration" width="650px"/>
+                <Carousel/>
             </div>
         </div>
 
-        <div className='pricing'>
+        {/* <div className='pricing'>
             <div className='bronze'>
                 <div>Bronze</div>
                 <div>Free trial 30 days</div>
@@ -91,7 +103,7 @@ function Landing() {
 
         <div className='features'>
             <div className='features-heading'>Packed with amazing features</div>
-        </div>
+        </div> */}
     </>
   )
 }

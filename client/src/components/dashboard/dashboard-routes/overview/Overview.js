@@ -77,9 +77,8 @@ function Overview(props) {
                   recommendedClub.map(item => {
                     return (
                       <div className='group'>
-                        <div className='group-image'>
-                          <img src='https://thumbs.dreamstime.com/b/funny-cartoon-monster-face-vector-monster-square-avatar-funny-cartoon-monster-cyclops-face-vector-halloween-monster-square-avatar-175919095.jpg' alt='grp-img' style={{width:'30px'}}/>
-                        </div>
+                        <img src='https://secureservercdn.net/198.71.233.1/fc7.e85.myftpupload.com/wp-content/uploads/2019/01/color-swatch-multicolored-1536x1536.png' alt='grp-img' 
+                        style={{width:'50px'}}/>
                         <div style={{width:'75%'}}>
                           <div className='group-name'>{item.name}</div>
                           <div className='group-desc'>{item.description}</div>

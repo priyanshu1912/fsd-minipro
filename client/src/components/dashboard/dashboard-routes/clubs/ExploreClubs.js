@@ -2,8 +2,15 @@ import React,{useEffect,useState} from 'react'
 import './ExploreClubs.css'
 import axios from 'axios'
 import {useStore} from 'react-context-hook'
+import {MdError,MdCheckCircle} from 'react-icons/md'
+import {IoIosPeople} from 'react-icons/io'
 
 function ExploreClubs() {
+    const [popup,setPopup] = useState({
+        value: false,
+        message: null
+    })
+
     const [userInfo,setUserInfo] = useStore('user')
     const [allClubs,setAllClubs] = useState(null)
     console.log(allClubs)
@@ -11,7 +18,13 @@ function ExploreClubs() {
     const joinClub = (value) => {
         axios.post(`http://localhost:5000/club/${userInfo._id}/join/${value}`)
         .then(res => {
-            console.log(res.data)
+            console.log(res.data.message)
+
+            setPopup({
+                ...popup,
+                value: true,
+                message: res.data.message
+            })
         })
         .catch(err=>{
             console.log(err)
@@ -28,8 +41,28 @@ function ExploreClubs() {
         })
     },[])
 
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setPopup(false)
+        },2500)
+    },[popup.value])
+
   return (
     <div className='explore-clubs'>
+        {
+            popup.value &&
+            <div className='error-container'>
+                {/* {
+                    message.type==='error' ? 
+                    <MdError style={{color:'red',fontSize:'35px',marginRight:'0.5vw'}}/> 
+                    : 
+                    <MdCheckCircle style={{color:'green',fontSize:'35px',marginRight:'0.5vw'}}/>
+                } */}
+                <MdCheckCircle style={{color:'green',fontSize:'35px',marginRight:'0.5vw'}}/> 
+                <div className='error-message'>{popup.message}</div>
+            </div>
+        }
         {
             allClubs && allClubs.length !==0 ?
             <>
@@ -45,7 +78,10 @@ function ExploreClubs() {
                                     <div className='your-club-name'>{item.name}</div>
                                     <div className='your-club-desc'>
                                         {item.description}
-                                        <div className='your-club-members'>{item.students.length} students enrolled</div>
+                                        <div className='your-club-members'>
+                                            <IoIosPeople className='members-icon'/>
+                                            <div>{item.students.length} students enrolled</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

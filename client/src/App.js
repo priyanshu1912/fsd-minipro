@@ -6,6 +6,11 @@ import Dashboard from './components/dashboard/Dashboard';
 import Register from './components/register/Register';
 import {withStore} from 'react-context-hook'
 
+import "slick-carousel/slick/slick.css";
+
+import "slick-carousel/slick/slick-theme.css";
+
+
 const initialState = {
   clubData: '',
   selected: '',
