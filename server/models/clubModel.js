@@ -30,6 +30,11 @@ const clubSchema = new mongoose.Schema({
         title: { type: String },
         description: { type: String },
         createdAt: { type: Date }
+
+        // content: {type: String},
+        // username: {type: String},
+        // image: {type: String},
+        // createdAt: { type: Date }
     }]
 });
 

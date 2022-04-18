@@ -19,13 +19,18 @@ function OpenClub(props) {
     })
     const [loading,setLoading] = useState(false)
 
-    console.log({postData})
-
     const post = (id) => {
-        // setLoading(true)
+        setLoading(true)
         axios.post(`http://localhost:5000/club/${id}/createPost`,postData)
         .then(res=>{
             console.log(res)
+            if(res.data.status===200){
+                setLoading(false)
+                setOpen({
+                    ...open,
+                    value: false
+                })
+            }
         })
         .catch(err=>{
             console.log(err)

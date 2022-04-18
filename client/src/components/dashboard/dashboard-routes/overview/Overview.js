@@ -2,12 +2,20 @@ import axios from 'axios'
 import React,{useState,useEffect} from 'react'
 import Feeds from '../../feeds/Feeds'
 import './Overview.css'
+import {useNavigate} from 'react-router-dom'
 
 
 function Overview(props) {
+  const navigate = useNavigate()
+
   const [recommendedPeople,setRecommendedPeople] = useState(null)
   const [recommendedClub,setRecommendedClub] = useState(null)
   const {userData} = props
+
+  const [openProfile,setOpenProfile] = useState({
+    value: false,
+    data: null
+  })
 
   console.log(recommendedPeople)
 
@@ -44,7 +52,11 @@ function Overview(props) {
 
 
   const viewProfile = (id) => {
-
+    setOpenProfile({
+      ...openProfile,
+      value: true,
+      data: id
+    })
   }
 
   return (
@@ -96,7 +108,7 @@ function Overview(props) {
                         <img src={item.profilePhoto} className='people-image'/>
                         <div className='people-name'>{item.name}</div>
                       </div>
-                      <div onClick={()=>viewProfile(item._id)} className='connect'>view</div>
+                      <div onClick={()=>viewProfile(item)} className='connect'>view</div>
                     </div>
                   )
                 })

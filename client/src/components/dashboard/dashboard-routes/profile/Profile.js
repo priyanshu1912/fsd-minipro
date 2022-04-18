@@ -13,7 +13,7 @@ function Profile(props) {
 
     const [newForm, setNewForm] = useState({
         open: false,
-        text: ''
+        text: null
     })
 
     const userData = props.userData
@@ -41,6 +41,38 @@ function Profile(props) {
         .catch(err=>{
           console.log(err)
         })
+    }
+
+
+    const deleteItem = (item) => {
+        // axios.delete(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`,item)
+        // .then(res=>{
+        //     console.log(res.data)
+        //     getUser()
+        // })
+        // .catch(err=>{
+        //     console.log(err)
+        // })
+    }
+
+    const updateItem = (item) => {
+
+        // const item1 = {
+        //     title: 'priyanshu bhardwaj',
+        //     body: item.body,
+        //     url: item.url,
+        //     _id: item._id
+        // }
+        
+        // axios.patch(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`,item1)
+        // .then(res=>{
+        //     console.log(res.data)
+        // })
+        // .catch(err=>{
+        //     console.log(err)
+        // })
+
+        // console.log(item.title)
     }
 
   return (
@@ -126,8 +158,8 @@ function Profile(props) {
                                             </div>
                                         </div>
                                         <div style={{display:'flex',flexDirection:'column'}}>
-                                            <AiFillDelete className='project-del'/>
-                                            <AiFillEdit className='project-edit'/>
+                                            <AiFillDelete onClick={()=>deleteItem(item)} className='project-del'/>
+                                            <AiFillEdit onClick={()=>updateItem(item)} className='project-edit'/>
                                         </div>
                                     </div>
                                 )

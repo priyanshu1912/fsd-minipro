@@ -20,14 +20,14 @@ function YourClubs(props) {
     })
 
     const removeClub = (id) => {
-        // axios.post(`http://localhost:5000/club/${userInfo._id}/leave/${id}`)
-        // .then(res=>{
-        //     console.log(res)
-        //     getClubs()
-        // })
-        // .catch(err=>{
-        //     console.log(err)
-        // })
+        axios.post(`http://localhost:5000/club/${userInfo._id}/leave/${id}`)
+        .then(res=>{
+            console.log(res)
+            getClubs()
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
 
     const getClubs = () => {

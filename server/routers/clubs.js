@@ -141,7 +141,6 @@ app.post("/:studentId/leave/:clubId",async function(req,res){
           { $pull: { clubs: club1 } }
         );
         res.json({ message: 'club left successfully' });
-        // res.send(JSON.stringify(clubs));
       }
       else{
         console.log("clubs not found");
@@ -155,7 +154,7 @@ app.post("/:clubId/createPost",async function(req,res){
 
   console.log(req.body)
     
-  const clubId=req.params.clubId;
+  const clubId=req.params.clubId; 
   const newPost= new postModel({
     title: req.body.title,
     description: req.body.description,
@@ -174,6 +173,11 @@ app.post("/:clubId/createPost",async function(req,res){
   const post1={
     title: newPost.title,
     description: newPost.description,
+
+    // username: req.body.username,
+    // profileImage: req.body.image,
+    // content: req.body.content,
+
     createdAt: newPost.createdAt
   }
 
@@ -183,7 +187,7 @@ app.post("/:clubId/createPost",async function(req,res){
     { $push: { posts: post1 } }
   );
   res.status(201).json(newPost);
-  res.json({ message: 'post created successfully' });
+  res.json({ message: 'post created successfully' ,status:200});
 });
 
 app.get("/:clubId/post",async function(req,res){

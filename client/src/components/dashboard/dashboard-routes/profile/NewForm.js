@@ -7,6 +7,8 @@ import PulseLoader from "react-spinners/PulseLoader";
 function NewForm(props) {
     const {newForm, setNewForm, text, user, getUser} = props
 
+    console.log(newForm)
+
     const [bio,setBio] = useState({
         bio: user.bio
     })
