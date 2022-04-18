@@ -61,11 +61,18 @@ const studentSchema = new mongoose.Schema({
     linkedin: { type: String },
     github: { type: String },
     clubs: [{
+        id: { type: String },
         name: { type: String },
         faculty: { type: String },
         description: { type: String },
         department: { type: String },
-        students: {type: [String] }
+        students: { type: [String] },
+        posts: [{
+            username: { type: String },
+            profilePhotot: { type: String },
+            content: { type: String },
+            createdAt: { type: Date }
+        }]
     }]
 }, { collection: "students" });
 

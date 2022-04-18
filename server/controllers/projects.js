@@ -14,7 +14,7 @@ const handleErrors = (err) => {
     }
     return errors;
 }
- 
+
 export const getProject = async (req, res) => {
     try {
         const allProjects = await ProjectModel.find();
