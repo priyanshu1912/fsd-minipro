@@ -79,11 +79,13 @@ app.post("/:studentId/join/:clubId",async function(req,res){
       if(club){
 
         const club1={
+          id: club[0]._id,
           name: club[0].name,
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
-          students: club[0].students
+          students: club[0].students,
+          posts:club[0].posts
         }
 
         // find club and add studentID in array
@@ -123,7 +125,8 @@ app.post("/:studentId/leave/:clubId",async function(req,res){
           faculty: club[0].faculty,
           description: club[0].description,
           department: club[0].department,
-          students: club[0].students
+          students: club[0].students,
+          posts:club[0].posts
         }
 
         // find club and remove studentID from array
@@ -149,13 +152,18 @@ app.post("/:studentId/leave/:clubId",async function(req,res){
 });
 
 app.post("/:clubId/createPost",async function(req,res){
+
+  console.log(req.body)
     
   const clubId=req.params.clubId;
   const newPost= new postModel({
     title: req.body.title,
     description: req.body.description,
-    // creator: req.params.id,
     tags: req.body.tags
+
+    // username: req.body.username,
+    // profileImage: req.body.image,
+    // content: req.body.content
   });
 
   newPost.save(function(err){

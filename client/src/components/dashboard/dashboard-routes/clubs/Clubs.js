@@ -20,19 +20,19 @@ function Clubs() {
             {
               tab==='your' &&
               <YourClubs post={post} setPost={setPost}/>
-            }
+            } 
             {
               tab==='explore' &&
               <ExploreClubs post={post} setPost={setPost}/>
             }
           </div>
 
-          <div style={{width:'50%'}}>
+          {/* <div style={{width:'50%'}}>
             {
               post &&
               <OpenClub/>
             }
-          </div>
+          </div> */}
         </div>
     </div>
   )

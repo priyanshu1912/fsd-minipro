@@ -1,8 +1,18 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './Landing.css'
 import Nav from '../navbar/Nav'
+import {useLocation,useNavigate} from 'react-router-dom'
 
 function Landing() {
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(location.pathname.match('/')){
+            navigate('/login')
+        }
+    },[])
+
   return (
     <>
         <Nav/>

@@ -11,8 +11,6 @@ function Profile(props) {
     const [userPublications,setUserPublications] = useState(null)
     const [userAchievements,setUserAchievements] = useState(null)
 
-    console.log({user})
-
     const [newForm, setNewForm] = useState({
         open: false,
         text: ''
