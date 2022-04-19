@@ -5,6 +5,10 @@
     justify-content: space-evenly;
     align-items: center;
     background-color: white;
+    /* background-image: url('https://th.bing.com/th/id/OIP.Y2tU3e5rDxsYlPckeIy7XwHaFC?pid=ImgDet&rs=1');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; */
     /* background: linear-gradient(-90deg, #02203c, #001528);
     color: white; */
 }
@@ -15,7 +19,8 @@
 }
 
 .landing-illustration {
-    width: 40%;
+    width: 45%;
+    text-align: center;
 }
 
 .banner-heading {

@@ -1,8 +1,13 @@
 .slide-title {
-    font-size: 4vh;
+    font-size: 3vh;
     font-weight: bold;
 }
 
 .slide-content {
-    font-size: 3vh;
+    font-size: 2.5vh;
+}
+
+.slide-image {
+    width: 300px;
+    margin: auto;
 }
