@@ -1,20 +1,29 @@
 .landing {
+    width: 100%;
+    height: 85vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
-    height: 80vh;
+    background-color: white;
     /* background: linear-gradient(-90deg, #02203c, #001528);
     color: white; */
 }
 
 .landing-banner {
+    width: 40%;
     text-align: left;
 }
 
+.landing-illustration {
+    width: 40%;
+}
+
 .banner-heading {
-    font-size: 8vh;
-    font-weight: bold;
+    font-size: 9vh;
+    font-weight: 800;
+    background: -webkit-linear-gradient(#bc4e9c, #f80759);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .banner-subheading {

@@ -8,7 +8,7 @@
     justify-content: space-between;
     background-color: white;
     border-radius: 15px;
-    padding: 1.5vh 1vw;
+    padding: 3vh 1.5vw;
     margin: 2vh 0;
     box-shadow: 2px 0 10px rgb(230, 230, 230);
 }
@@ -41,7 +41,7 @@
 
 
 .your-club-name {
-    font-size: 2.5vh;
+    font-size: 3.5vh;
     color: black;
     cursor: pointer;
 }
@@ -51,23 +51,35 @@
 
 .your-club-desc {
     color: grey;
-    font-size: 2vh;
+    font-size: 2.2vh;
 }
 
 .your-club-image {
-    width: 70px;
-    height: 70px;
-    background-color: aliceblue;
+    width: 100px;
+    /* background-color: aliceblue;
     border-radius: 10px;
-    padding: 2vh;
+    padding: 2vh; */
     margin-right: 1vw;
+    object-fit: cover;
+}
+
+.your-club-members {
+    font-size: 2vh;
+    margin-top: 1vh;
+    display: flex;
+    align-items: center;
+}
+
+.members-icon {
+    font-size: 25px;
+    margin-right: 0.5vw;
 }
 
 .remove-club {
     font-size: 2.2vh;
     color: red;
-    border: 1px solid red;
-    padding: 0.1vh 0.5vw;
+    background-color: #ffebee;
+    padding: 0.5vh 0.5vw;
     border-radius: 15px;
     font-size: 2vh;
     cursor: pointer;
@@ -75,5 +87,4 @@
 .remove-club:hover {
     background-color: red;
     color: white;
-    border: 1px solid red;
 }

@@ -45,14 +45,16 @@ function Profile(props) {
 
 
     const deleteItem = (item) => {
-        // axios.delete(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`,item)
-        // .then(res=>{
-        //     console.log(res.data)
-        //     getUser()
-        // })
-        // .catch(err=>{
-        //     console.log(err)
-        // })
+        const itemjson = JSON.stringify({id: item})
+        console.log({id: item})
+        axios.delete(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`, itemjson)
+        .then(res=>{
+            console.log(res.data)
+            getUser()
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
 
     const updateItem = (item) => {
@@ -64,13 +66,13 @@ function Profile(props) {
         //     _id: item._id
         // }
         
-        // axios.patch(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`,item1)
-        // .then(res=>{
-        //     console.log(res.data)
-        // })
-        // .catch(err=>{
-        //     console.log(err)
-        // })
+        axios.patch(`http://localhost:5000/update/${userData.userType.toLowerCase()}/${userData.username}/projects`,item)
+        .then(res=>{
+            console.log(res.data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
 
         // console.log(item.title)
     }
@@ -158,7 +160,7 @@ function Profile(props) {
                                             </div>
                                         </div>
                                         <div style={{display:'flex',flexDirection:'column'}}>
-                                            <AiFillDelete onClick={()=>deleteItem(item)} className='project-del'/>
+                                            <AiFillDelete onClick={()=>deleteItem(item._id)} className='project-del'/>
                                             <AiFillEdit onClick={()=>updateItem(item)} className='project-edit'/>
                                         </div>
                                     </div>

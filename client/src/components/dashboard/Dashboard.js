@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './Dashboard.css'
 import {IoSettingsOutline} from 'react-icons/io5'
 import {IoMdArrowDropdown} from 'react-icons/io'
@@ -10,18 +10,58 @@ import Profile from './dashboard-routes/profile/Profile'
 import Clubs from './dashboard-routes/clubs/Clubs'
 import DashboardNav from '../dashboard-nav/DashboardNav'
 import Projects from './dashboard-routes/projects/Projects'
-import {useLocation} from 'react-router-dom'
+import {useLocation,useNavigate} from 'react-router-dom'
+import logo from '../../assets/Amisocial-logo.png'
+import {MdError,MdCheckCircle} from 'react-icons/md'
 
 function Dashboard() {
     const location = useLocation()
+    const navigate = useNavigate()
+
+    const [popup,setPopup] = useState(false)
+
     const userData = location.state.data
 
     const [activeTab,setActiveTab] = useState('dashboard')
 
+
+    const logout = () => {
+        sessionStorage.removeItem('username')
+        setPopup(true)
+
+        setTimeout(()=>{
+            setPopup(false)
+        },2000)
+
+        window.location.reload()
+    }
+
+    useEffect(()=>{
+        const username = sessionStorage.getItem('username')
+
+        if(!username){
+            navigate('/login')
+        }
+    },[])
+
   return (
     <div className='dashboard'>
+        {
+            popup &&
+            <div className='error-container'>
+                {/* {
+                    message.type==='error' ? 
+                    <MdError style={{color:'red',fontSize:'35px',marginRight:'0.5vw'}}/> 
+                    : 
+                    <MdCheckCircle style={{color:'green',fontSize:'35px',marginRight:'0.5vw'}}/>
+                } */}
+                <MdCheckCircle style={{color:'green',fontSize:'35px',marginRight:'0.5vw'}}/> 
+                <div className='error-message'>logout successful</div>
+            </div>
+        }
         <div className='dashboard-side'>
             <div className='profile-info'>
+                <img src={logo} style={{width:'100px'}}/>
                 <div className='profile-info-name'>AMISOCIAL</div>
             </div>
 
@@ -57,6 +97,10 @@ function Dashboard() {
                     </div>
                     <MdKeyboardArrowRight className='profile-option-arrow'/>
                 </div> 
+            </div>
+
+            <div style={{textAlign:'center',position:'absolute',bottom:'10vh',right:'0',left:'0'}}>
+                <div className='logout' onClick={()=>logout()}>Log out</div>
             </div>
         </div>
 

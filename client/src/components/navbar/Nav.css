@@ -10,8 +10,14 @@
 .nav-logo {
     margin-left: 5vw;
     font-size: 5vh;
-    font-weight: bold;
-    color: blue;
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo-text {
+    letter-spacing: 1px;
+    font-size: 4vh;
+    color: grey;
 }
 
 .nav-options {
@@ -40,13 +46,17 @@
     cursor: pointer;
     color: white;
     text-decoration: none;
-    background-color: black;
+    background-color: #2196f3;
     padding: 1vh 1vw;
     border-radius: 5px;
     font-family: Poppins;
+    font-size: 2.5vh;
+    border: 1.5px solid #2196f3;
 }
 .nav-login:hover {
-    background-color: blue;
+    background-color: #e3f2fd;
+    color: #2196f3;
+    border: 1.5px solid #e3f2fd;
 }
 
 .nav-register {
@@ -57,9 +67,14 @@
     border: none;
     margin-right: 1vw;
     text-decoration: none;
-    color: black;
+    color: #2196f3;
     font-family: Poppins;
+    border: 1.5px solid #2196f3;
+    background-color: white;
+    font-size: 2.5vh;
 }
 .nav-register:hover {
-    color: blue;
+    color: white;
+    background-color: #2196f3;
+    /* border: 1.5px solid #e3f2fd; */
 }

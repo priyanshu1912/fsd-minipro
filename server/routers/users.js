@@ -15,7 +15,7 @@ router.get("/:type/:username", async (req, res) => {
       var userData = await FacultyModel.findOne({ username });
     }
 
-    if (userData === null) {
+    if (userData === null) { 
       res.status(400).json("No user found!");
     }
     else {

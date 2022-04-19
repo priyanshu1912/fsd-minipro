@@ -40,7 +40,7 @@ export const loginUser = async (req, res) => {
                     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
                     res.send({status: 200, id: faculty._id, data: faculty});
                 }
-                else {
+                else { 
                     res.send({status:400, message:"Invalid Username/Password!!"});
                 }
             }
