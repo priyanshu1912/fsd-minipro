@@ -5,14 +5,16 @@ export const updateBio = async (req, res) => {
     const type = req.params['type'];
     const username = req.params['username'];
     const { bio } = req.body;
+    let model;
 
     if (type === "student") {
-        var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { bio: bio }, { new: true });
+        model = StudentModel;
     }
     else {
-        var updatedProfile = await FacultyModel.findOneAndUpdate({ username }, { bio: bio }, { new: true });
+        model = FacultyModel;
     }
 
+    var updatedProfile = await model.findOneAndUpdate({ username }, { bio: bio }, { new: true });
     if (updatedProfile === null) {
         res.status(400).json("No user found!");
     }
@@ -67,7 +69,7 @@ export const updateProfileItem = async (req, res) => {
         var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $push: { [field]: newDoc } }, { new: true });
     }
     else {
-        var updatedProfile = await StudentModel.findOneAndUpdate({ username }, { $pull: { [field]: { _id: id } } }, { new: true });
+        var updatedProfile = await FacultyModel.findOneAndUpdate({ username }, { $pull: { [field]: { _id: id } } }, { new: true });
         var updatedProfile = await FacultyModel.findOneAndUpdate({ username }, { $push: { [field]: newDoc } }, { new: true });
     }
 
