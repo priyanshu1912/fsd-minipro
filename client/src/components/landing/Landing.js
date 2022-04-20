@@ -31,8 +31,8 @@ function Landing() {
         <Nav/>
         <div className='landing'>
             <div className='landing-banner'>
-                <div className='banner-heading'>Our Solution</div>
-                <div className='banner-subheading'>A web application which provides the following functionalities.</div>
+                <div className='banner-heading'>AMISOCIAL</div>
+                <div className='banner-subheading'>Amity's own social media network</div>
             </div>
             <div className='landing-illustration'>
                 <Carousel/>
