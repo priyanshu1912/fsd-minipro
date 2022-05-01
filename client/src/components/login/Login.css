@@ -146,3 +146,21 @@
     font-size: 2.2vh;
     color: grey;
 }
+
+@media screen and (max-width:1000px) {
+    .login-form {
+        position: relative;
+        width: 35%;
+       
+    }
+}
+@media screen and (max-width: 650px){
+    .login-form {
+        position: relative;
+        width: 65%;
+        
+    }
+    .login-as-container{
+     flex-direction: column;
+    }
+}
