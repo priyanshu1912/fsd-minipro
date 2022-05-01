@@ -52,3 +52,10 @@
     font-size: 20px;
     margin-right: 0.3vw;
 }
+
+@media screen and (max-width: 730px){
+    .feed-container{
+    width: 60vw;
+    padding: 5vh 1.5vw;
+    }
+}
