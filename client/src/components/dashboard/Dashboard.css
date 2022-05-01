@@ -93,3 +93,48 @@
 
 
 /* #2196f3 */
+
+@media screen and (max-width: 730px){
+.dashboard-side {
+    width: 25vw;
+}
+
+.dashboard-options {
+    font-size: 1.5vh;
+    width: 70%;
+    margin: 0.5vh 0.5vh;
+
+}
+.dashboard-option-active{
+    margin: 1vh 0;
+    color: white;
+    background-color: #2196f3;
+    padding: 0.5vh 3vw;
+    border-radius: 15px;
+    justify-content: center;
+}
+
+.profile-info>img{
+    width:85px;
+}
+.profile-info>.profile-info-name {
+    text-align: center;
+    font-size: 1.99vh;
+    margin: 1vh 0 5vh 0;
+    font-weight: bold;
+    color: grey;
+}
+}
+
+@media screen and (max-width: 375px){
+    .profile-info>img{
+        width:65px;
+    }
+    .profile-info>.profile-info-name {
+        text-align: center;
+        font-size: 0.99vh;
+        margin: 1vh 0 5vh 0;
+        font-weight: bold;
+        color: grey;
+    } 
+}
