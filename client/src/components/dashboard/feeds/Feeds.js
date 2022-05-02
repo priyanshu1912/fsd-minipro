@@ -3,15 +3,19 @@ import './Feeds.css'
 import {AiFillHeart} from 'react-icons/ai'
 import axios from 'axios'
 
-function Feeds() {
+function Feeds(props) {
   const [feeds,setFeeds] = useState(null)
+
+  const {userData} = props
+  console.log({userData})
+
   console.log({feeds})
 
   const getData = () => {
     axios.get('http://localhost:5000/club')
     .then(res=>{
         const data = res.data
-        const userClubs = data.filter(item => item.students.includes('625b973da035c0ba0404b9b4'))
+        const userClubs = data.filter(item => item.students.includes(userData._id))
         let feed = []
         userClubs.forEach(item => {
           const club = item.posts
@@ -39,6 +43,7 @@ console.log({feeds})
       <div className='feeds'>
       {
         feeds.map(item => {
+          if(item.username) {
           return (
             <div className='feed-container'>
               <div className='feed-info'>
@@ -68,8 +73,8 @@ console.log({feeds})
           </div>
         </div> */}
         
-    </div>
-          )
+            </div>
+          ) }
         })
       }
       </div>

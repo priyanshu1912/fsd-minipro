@@ -45,12 +45,14 @@ function YourClubs(props) {
         })
     }
 
+    console.log({clubs})
+
     const getClubs = () => {
         axios.get('http://localhost:5000/club')
         .then(res=>{
             const data = res.data
             //console.log({data})
-            setClubs(data.filter(item => item.students.includes('625b973da035c0ba0404b9b4')))
+            setClubs(data.filter(item => item.students.includes(userInfo._id)))
         })
         .catch(err=>{
           console.log(err)

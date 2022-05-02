@@ -63,7 +63,7 @@ function Overview(props) {
     <div className='overview'>
       <div className='container1'>
         <div className='feeds-heading'>Feeds</div>
-        <Feeds/>
+        <Feeds userData={userData}/>
       </div>
 
       <div className='container2'>
