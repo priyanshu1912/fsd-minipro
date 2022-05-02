@@ -16,7 +16,8 @@ import postRoutes from './routers/post.js';
 import clubRoutes from './routers/clubs.js';
 
 const app = express();
-dotenv.config({path:'config.env'})
+dotenv.config();
+dotenv.config({ path: 'config.env' })
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
@@ -38,7 +39,9 @@ app.use('/club', clubRoutes);
 // const CONNECTION_URL = "mongodb+srv://fsdproject:fsdproject007@cluster0.cnnlb.mongodb.net/FSDProject?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
 
-const url = process.env.CONNECTION_URL
+const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.cnnlb.mongodb.net/FSDProject?retryWrites=true&w=majority`;
+
+console.log(url)
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     app.listen(PORT, () => { console.log(`Server running on port: ${PORT}`) });
