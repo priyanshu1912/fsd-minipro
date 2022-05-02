@@ -1,7 +1,7 @@
 .login-page {
     display: flex;
     justify-content: space-evenly;
-    padding: 10vh 0;
+    /* padding: 10vh 0; */
     background-color: #f5f5f5;
     height: 100vh;
 }
@@ -13,6 +13,8 @@
     border-radius: 15px;
     background-color: white;
     box-shadow: 2px 0 10px rgb(230, 230, 230);
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .login-heading {
@@ -145,4 +147,31 @@
 .error-message {
     font-size: 2.2vh;
     color: grey;
+}
+
+/* @media screen and (max-width:1000px) {
+    .login-form {
+        position: relative;
+        width: 35%;
+       
+    }
+}
+@media screen and (max-width: 650px){
+    .login-form {
+        position: relative;
+        width: 65%;
+        
+    }
+    .login-as-container{
+     flex-direction: column;
+    }
+} */
+
+
+@media screen and (max-width: 500px) {
+    .login-form{
+        width: 85%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }

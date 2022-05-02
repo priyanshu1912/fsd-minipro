@@ -17,3 +17,49 @@
     margin-right: 2vw;
     border-bottom: 2px solid #f5f5f5;
 }
+
+
+.clubs-options-container {
+    display: flex;
+    align-items: center;
+    color: grey;
+}
+
+.clubs-area {
+    width: 50%;
+    padding-right: 1vw;
+}
+
+/* @media screen and (max-width: 730px){
+    .clubs{
+        margin-top: 15vh;
+    }
+.clubs>div{
+    
+    flex-direction: column;
+    align-items: left;
+}} */
+
+
+.clubs-area-container {
+    width: 100%;
+    display: flex;
+    margin-top: 5vh;
+    justify-content: space-between;
+}
+
+
+@media screen and (max-width: 500px) {
+    .clubs-options-container {
+        margin-top: 15vh;
+        width: 100%;
+    }
+
+    .clubs-area {
+        width: 100%;
+    }
+
+    .clubs-area-container {
+        margin-top: 2vh;
+    }
+}

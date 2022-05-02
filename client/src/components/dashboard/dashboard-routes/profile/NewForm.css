@@ -54,3 +54,15 @@
     background-color: white;
     color: #2196f3;
 }
+
+@media screen and (max-width: 500px) {
+    .newform {
+        width: 80%;
+        left: 10%;
+        right: 10%;
+    }
+
+    .newform-input {
+        width: 90%;
+    }
+}

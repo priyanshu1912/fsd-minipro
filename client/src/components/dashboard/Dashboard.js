@@ -13,6 +13,7 @@ import Projects from './dashboard-routes/projects/Projects'
 import {useLocation,useNavigate} from 'react-router-dom'
 import logo from '../../assets/Amisocial-logo.png'
 import {MdError,MdCheckCircle} from 'react-icons/md'
+import {GiHamburgerMenu} from 'react-icons/gi'
 
 function Dashboard() {
     const location = useLocation()
@@ -44,8 +45,14 @@ function Dashboard() {
         }
     },[])
 
+    const [side,setSide] = useState(false)
+
   return (
     <div className='dashboard'>
+        <input type="checkbox" id="check"/>
+        <label for="check">
+            <GiHamburgerMenu for="check" className='hamburger'/>
+        </label>
         {
             popup &&
             <div className='error-container'>

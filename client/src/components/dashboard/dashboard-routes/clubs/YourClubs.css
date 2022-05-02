@@ -88,3 +88,17 @@
     background-color: red;
     color: white;
 }
+
+@media screen and (max-width: 500px) {
+    .your-club-image {
+        width: 70px;
+    }
+
+    .your-club-name {
+        font-size: 3vh;
+    }
+
+    .your-club-desc {
+        font-size: 1.5vh;
+    }
+}

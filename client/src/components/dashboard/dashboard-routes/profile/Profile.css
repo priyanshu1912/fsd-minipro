@@ -213,3 +213,67 @@
 .social-media-edit:hover {
     color: #2196f3;
 }
+
+.bio-container {
+    color: grey;
+    font-size: 2.2vh;
+    background-color: white;
+    border-radius: 15px;
+    padding: 1vh 1vw;
+    box-shadow: 2px 0 10px rgb(230, 230, 230);
+    height: 80%;
+    margin-top: 1vh;
+}
+
+.contact-container {
+    width: 80%;
+}
+
+@media screen and (max-width: 500px) {
+    .profile {
+        width: 100vw;
+        left: 0;
+    }
+
+    .about-container {
+        flex-direction: column;
+    }
+
+    .about {
+        width: 100%;
+        margin-bottom: 2vh;
+    }
+
+    .contact {
+        width: 100%;
+    }
+
+    .bio-container {
+        width: 95%;
+        height: 20vh;
+    }
+
+    .contact-element {
+        width: 90%;
+    }
+
+    .contact-container {
+        width: 100%;
+    }
+
+    .project-container {
+        flex-direction: column;
+    }
+
+    .projects {
+        width: 100%;
+    }
+
+    .skills {
+        width: 100%;
+    }
+
+    .user-project {
+        width: 95%;
+    }
+}

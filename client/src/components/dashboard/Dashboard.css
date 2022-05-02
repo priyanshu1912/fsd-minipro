@@ -1,9 +1,10 @@
 .dashboard {
     display: flex;
+    width: 100%;
 }
 
 .dashboard-side {
-    width: 20vw;
+    width: 20%;
     height: 100vh;
     padding: 2vh 0;
     position: fixed;
@@ -23,7 +24,7 @@
 }
 
 .dashboard-main {
-    width: 80vw;
+    width: 80%;
     padding: 2vh 5vw 2vh 25vw;
     background-color: #f5f5f5;
 }
@@ -93,3 +94,89 @@
 
 
 /* #2196f3 */
+
+/* @media screen and (max-width: 730px){
+.dashboard-side {
+    width: 25vw;
+}
+
+.dashboard-options {
+    font-size: 1.5vh;
+    width: 70%;
+    margin: 0.5vh 0.5vh;
+
+}
+.dashboard-option-active{
+    margin: 1vh 0;
+    color: white;
+    background-color: #2196f3;
+    padding: 0.5vh 3vw;
+    border-radius: 15px;
+    justify-content: center;
+}
+
+.profile-info>img{
+    width:85px;
+}
+.profile-info>.profile-info-name {
+    text-align: center;
+    font-size: 1.99vh;
+    margin: 1vh 0 5vh 0;
+    font-weight: bold;
+    color: grey;
+}
+}
+
+@media screen and (max-width: 375px){
+    .profile-info>img{
+        width:65px;
+    }
+    .profile-info>.profile-info-name {
+        text-align: center;
+        font-size: 0.99vh;
+        margin: 1vh 0 5vh 0;
+        font-weight: bold;
+        color: grey;
+    } 
+} */
+
+.hamburger {
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media screen and (max-width: 500px) {
+    .dashboard-side {
+        position: absolute;
+        width: 50%;
+        left: -100%;
+        transition: left 0.5s ease-in-out;
+    }
+
+    .profile-info {
+        margin-top: 10vh;
+    }
+
+    #check:checked ~.dashboard-side {
+        left: 0;
+    }
+
+    .dashboard-main {
+        width: 90%;
+        padding: 0;
+        margin: auto;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 20px;
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        z-index: 100000;
+        position: fixed;
+    }
+}

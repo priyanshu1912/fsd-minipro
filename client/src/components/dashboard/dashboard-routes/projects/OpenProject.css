@@ -70,3 +70,19 @@
 .your-club-faculty {
     font-size: 2vh;
 }
+
+@media screen and (max-width: 500px) {
+    .project-details {
+        width: 80%;
+        left: 10%;
+        right: 10%;
+    }
+
+    .openproject-raised {
+        font-size: 1.5vh;
+    }
+
+    .openproject-desc {
+        font-size: 2vh;
+    }
+}

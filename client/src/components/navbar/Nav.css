@@ -78,3 +78,32 @@
     background-color: #2196f3;
     /* border: 1.5px solid #e3f2fd; */
 }
+
+@media screen and (max-width: 375px){ 
+    .nav-logo> img{
+        width: 50px;
+    }
+    .nav-logo {
+        margin-left: 2.5vw;
+        font-size: 2.5vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav-logo-text {
+        letter-spacing: 1px;
+        font-size: 3vh;
+        color: grey;
+    }
+
+
+    .nav-register{
+        font-size: 2vh;
+        padding: 0.43vh 0.43vw;
+    }
+
+    .nav-login{
+        font-size: 2vh;
+        padding: 0.43vh 0.43vw;
+    }
+ }
