@@ -32,21 +32,21 @@ useEffect(()=>{
     <>
     {
       feeds && feeds.length !== 0 &&
-      <>
+      <div className='feeds'>
       {
         feeds.map(item => {
           return (
             <div className='feed-container'>
-        <div className='feed-info'>
-            <div style={{display:'flex',alignItems:'center'}}>
-              <img src={item.image} className='feed-image'/>
-              <div className='feed-name'>
-                <div>{item.username}</div>
-                <div className='feed-time'>{item.createdAt.slice(0,item.createdAt.indexOf('T'))}</div>
+              <div className='feed-info'>
+                  <div style={{display:'flex',alignItems:'center'}}>
+                    <img src={item.image} className='feed-image'/>
+                    <div className='feed-name'>
+                      <div>{item.username}</div>
+                      <div className='feed-time'>{item.createdAt.slice(0,item.createdAt.indexOf('T'))}</div>
+                    </div>
+                  </div>
+                  <div></div>
               </div>
-            </div>
-            <div></div>
-        </div>
 
         <div className='feed-content'>
           {item.content}
@@ -68,7 +68,7 @@ useEffect(()=>{
           )
         })
       }
-      </>
+      </div>
     }
     </>
   )

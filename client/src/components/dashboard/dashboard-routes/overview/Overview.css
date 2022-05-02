@@ -120,7 +120,7 @@
     color: white;
 }
 
-@media screen and (max-width: 730px){
+/* @media screen and (max-width: 730px){
     .overview{
      flex-direction: column;
     }
@@ -142,4 +142,21 @@
         padding: 1vh 1.5vw;
     }
    
+} */
+
+@media screen and (max-width: 500px) {
+    .container1 {
+        width: 95%;
+        padding-top: 8vh;
+    }
+
+    .container2 {
+        display: none;
+    }
+
+    .feeds-heading {
+        position: fixed;
+        background-color: #f5f5f5;
+        width: 100%;
+    }
 }

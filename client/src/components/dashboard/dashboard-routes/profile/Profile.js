@@ -97,7 +97,7 @@ function Profile(props) {
         <div className='about-container'>
             <div className='about'>
                 <div className='about-heading'>Bio <AiFillEdit onClick={()=>addNewProject('bio')} className='edit-button'/></div>
-                <div style={{color:'grey',fontSize:'2.2vh',backgroundColor:'white',borderRadius:'15px',padding:'1vh 1vw',boxShadow: '2px 0 10px rgb(230, 230, 230)',height:'80%',marginTop:'1vh'}}>
+                <div className='bio-container'>
                     {
                         user.bio ?
                         <>{user.bio}</>
@@ -108,7 +108,7 @@ function Profile(props) {
             </div>
             <div className='contact'>
                 <div>Contact info</div>
-                <div style={{width:'80%'}}>
+                <div className='contact-container'>
                     <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                         <div className='contact-element'>
                             <img style={{width:'40px',height:'40px',borderRadius:'100%',objectFit:'contain'}} src="https://news.wirefly.com/sites/phonedog.com/files/styles/blog_entry/public/blog/main_image/2020/10/gmail-new-icon-2.jpg?itok=McR8B1ny"/>

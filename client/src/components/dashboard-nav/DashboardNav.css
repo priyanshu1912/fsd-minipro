@@ -42,3 +42,18 @@
     font-size: 20px;
     margin-right: 3vw;
 }
+
+
+@media screen and (max-width: 500px) {
+    .dashboard-main-nav {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+    }
+
+    .user-profile-name {
+        display: none;
+    }
+}

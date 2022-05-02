@@ -72,3 +72,18 @@
     padding: 0.5vh 0.5vw;
     border-radius: 15px;
 }
+
+@media screen and (max-width: 500px) {
+    .projects-container {
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .project-heading {
+        margin-top: 15vh;
+        margin-bottom: 2vh;
+    }
+
+    .projects-container {
+        margin: 2vh 0;
+    }
+}

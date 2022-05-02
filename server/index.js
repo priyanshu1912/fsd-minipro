@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import "cookie-parser";
+import dotenv from 'dotenv'
 
 import loginRoute from './routers/auth/login.js';
 import logoutRoute from './routers/auth/logout.js';
@@ -15,6 +16,7 @@ import postRoutes from './routers/post.js';
 import clubRoutes from './routers/clubs.js';
 
 const app = express();
+dotenv.config({path:'config.env'})
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
@@ -33,9 +35,11 @@ app.use('/club', clubRoutes);
 
 
 //Database Connection
-const CONNECTION_URL = "mongodb+srv://fsdproject:fsdproject007@cluster0.cnnlb.mongodb.net/FSDProject?retryWrites=true&w=majority";
+// const CONNECTION_URL = "mongodb+srv://fsdproject:fsdproject007@cluster0.cnnlb.mongodb.net/FSDProject?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+const url = process.env.CONNECTION_URL
+
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     app.listen(PORT, () => { console.log(`Server running on port: ${PORT}`) });
-}).catch((error) => console.log(error.message));
+}).catch((error) => console.log(error.message)); 

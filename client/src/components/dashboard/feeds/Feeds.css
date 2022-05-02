@@ -53,9 +53,15 @@
     margin-right: 0.3vw;
 }
 
-@media screen and (max-width: 730px){
+/* @media screen and (max-width: 730px){
     .feed-container{
     width: 60vw;
     padding: 5vh 1.5vw;
+    }
+} */
+
+@media screen and (max-width: 500px) {
+    .feeds {
+        margin-top: 12vh;
     }
 }
