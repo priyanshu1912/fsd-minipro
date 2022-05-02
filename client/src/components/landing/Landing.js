@@ -9,11 +9,11 @@ function Landing() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    // useEffect(()=>{
-    //     if(location.pathname.match('/')){
-    //         navigate('/login')
-    //     }
-    // },[])
+    useEffect(()=>{
+        if(location.pathname.match('/')){
+            navigate('/login')
+        }
+    },[])
 
     const settings = {
         dots: true,
