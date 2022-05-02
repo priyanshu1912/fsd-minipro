@@ -24,6 +24,9 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 //Routes
+app.get('/',(req,res)=>{
+    res.send('priyanshu')
+})
 app.use('/user', userRoute);
 app.use('/login', loginRoute);
 app.use('/logout', logoutRoute);
@@ -33,7 +36,6 @@ app.use('/update', updateRoute);
 app.use('/recommend', recommendedRoute);
 app.use('/post', postRoutes);
 app.use('/club', clubRoutes);
-
 
 //Database Connection
 // const CONNECTION_URL = "mongodb+srv://fsdproject:fsdproject007@cluster0.cnnlb.mongodb.net/FSDProject?retryWrites=true&w=majority";

@@ -17,6 +17,8 @@ function Feeds() {
           const club = item.posts
           club.forEach(item => feed.push(item))
         });
+
+        feed.sort((a,b)=>(a.createdAt < b.createdAt) ? 1 : -1)
         setFeeds(feed)
     })
     .catch(err=>{
@@ -27,6 +29,8 @@ function Feeds() {
 useEffect(()=>{
     getData()
 },[])
+
+console.log({feeds})
 
   return (
     <>

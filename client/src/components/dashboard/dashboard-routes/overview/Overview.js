@@ -100,7 +100,7 @@ function Overview(props) {
               recommendedPeople && recommendedPeople.length !== 0 &&
               <>
               {
-                recommendedPeople.map(item => {
+                recommendedPeople.slice(0,2).map(item => {
                   return (
                     <div className='people'>
                       <div style={{display:'flex',alignItems:'center'}}>
